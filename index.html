@@ -10,17 +10,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
-        /* Permitimos el scroll en la página */
+        /* Permitimos el scroll en la página con fondo infinito fijo */
         html, body {
             margin: 0;
             padding: 0;
-            min-height: 200vh; /* Hace la página el doble de alta para poder scrolear */
+            min-height: 200vh;
             background-color: #0a0110;
             font-family: Arial, sans-serif;
             color: white;
         }
 
-        /* CAPA DEL FONDO: Se queda fija de fondo mientras haces scroll (background-attachment: fixed) */
+        /* CAPA DEL FONDO: Se queda fija mientras haces scroll */
         .grid-bg {
             position: fixed;
             top: 0;
@@ -35,7 +35,7 @@
             z-index: 1;
         }
 
-        /* Línea de escaneo láser fija que recorre la pantalla */
+        /* Línea de escaneo láser continua */
         .grid-bg::after {
             content: "";
             position: absolute;
@@ -52,7 +52,7 @@
             100% { transform: translateY(100%); }
         }
 
-        /* Contenedor del contenido que se desplaza hacia abajo */
+        /* Contenedor del contenido principal */
         .wrapper {
             position: relative;
             z-index: 2;
@@ -114,7 +114,7 @@
             align-items: flex-start;
             gap: 80px;
             padding-top: 60px;
-            flex-wrap: wrap; /* Se adapta si se mira desde el móvil */
+            flex-wrap: wrap;
         }
 
         /* Bloques de los perfiles */
@@ -122,32 +122,53 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
             width: 250px;
         }
 
-        /* Animación de flotar suave */
+        /* Animación de flotar suave de arriba a abajo */
         @keyframes flotar {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Imágenes redondas flotantes */
-        .img-perfil {
-            width: 130px;
-            height: 130px;
+        /* Contenedor de la foto para aplicar la animación de flote */
+        .avatar-container {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            object-fit: cover;
+            overflow: hidden; /* Corta todo lo que se salga del círculo */
             animation: flotar 4s ease-in-out infinite;
-            border: 3px solid #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
         }
 
-        /* Borde brillante morado/rosa para las fotos */
-        .img-tiktok { box-shadow: 0 0 20px #ee1d52, 0 0 20px #69c9d0; }
-        .img-roblox { box-shadow: 0 0 20px #ffffff; }
+        /* Contenedor específico para TikTok (brillo neón morado) */
+        .container-tiktok { box-shadow: 0 0 25px rgba(168, 85, 247, 0.8); }
+        
+        /* Contenedor específico para Roblox (brillo blanco refinado) */
+        .container-roblox { box-shadow: 0 0 25px rgba(255, 255, 255, 0.6); }
 
-        /* Botón Estilo TikTok */
+        /* Ajuste de la imagen de TikTok para ocultar el reborde azul original */
+        .img-tiktok {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.18); /* Zoom ligero para esconder el marco azul */
+        }
+
+        /* Ajuste de la nueva imagen de Roblox */
+        .img-roblox {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #1a1b1f;
+        }
+
+        /* Botón Estilo TikTok con efecto de sombras cian/rojo */
         .btn-tiktok {
             display: inline-flex;
             align-items: center;
@@ -160,7 +181,7 @@
             border: none;
             border-radius: 8px;
             text-decoration: none;
-            box-shadow: -3px -3px 0px #69c9d0, 3px 3px 0px #ee1d52; /* Efecto glitch clásico de TikTok */
+            box-shadow: -3px -3px 0px #69c9d0, 3px 3px 0px #ee1d52;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -169,7 +190,7 @@
             box-shadow: -5px -5px 0px #69c9d0, 5px 5px 0px #ee1d52;
         }
 
-        /* Botón Estilo Roblox (Gris oscuro/plateado premium) */
+        /* Botón Estilo Roblox */
         .btn-roblox {
             display: inline-flex;
             align-items: center;
@@ -192,7 +213,6 @@
             color: #000000;
         }
 
-        /* Ajustes de iconos internos */
         .btn-tiktok i, .btn-roblox i {
             font-size: 20px;
         }
@@ -214,14 +234,18 @@
         <div class="seccion-bottom">
             
             <div class="perfil-card">
-                <img src="https://ui-avatars.com/api/?name=ZX&background=ee1d52&color=fff&size=128" alt="TikTok avatar" class="img-perfil img-tiktok">
+                <div class="avatar-container container-tiktok">
+                    <img src="https://raw.githubusercontent.com/rurumermar-ops/DiscordRuRu/main/image_96c324.png" alt="TikTok Zx_Deep" class="img-tiktok" onerror="this.src='https://raw.githubusercontent.com/rurumermar-ops/DiscordRuRu/main/image_9715bb.png'">
+                </div>
                 <a href="https://www.tiktok.com/@zx_deep" target="_blank" class="btn-tiktok">
                     <i class="fa-brands fa-tiktok"></i> TikTok
                 </a>
             </div>
 
             <div class="perfil-card">
-                <img src="https://ui-avatars.com/api/?name=RB&background=191b1d&color=fff&size=128" alt="Roblox avatar" class="img-perfil img-roblox">
+                <div class="avatar-container container-roblox">
+                    <img src="https://raw.githubusercontent.com/rurumermar-ops/DiscordRuRu/main/image_96c264.png" alt="Roblox Profile" class="img-roblox" onerror="this.src='https://raw.githubusercontent.com/rurumermar-ops/DiscordRuRu/main/image_971579.png'">
+                </div>
                 <a href="https://www.roblox.com/es/users/4049770594/profile" target="_blank" class="btn-roblox">
                     <i class="fa-solid fa-cube"></i> Roblox
                 </a>
