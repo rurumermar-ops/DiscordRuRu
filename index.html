@@ -10,28 +10,67 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
-        /* Centramos todo el contenido vertical y horizontalmente */
+        /* Fondo base oscuro con animación tecnológica morada */
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
             display: flex;
-            flex-direction: column; /* Organiza el título arriba y el botón abajo */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #1a1b1f; /* Fondo oscuro */
+            background-color: #0d0214; /* Fondo morado ultra oscuro */
+            
+            /* Creación de una rejilla tecnológica usando gradientes */
+            background-image: 
+                linear-gradient(rgba(128, 0, 128, 0.15) 2px, transparent 2px),
+                linear-gradient(90px, rgba(128, 0, 128, 0.15) 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: center;
+            
             font-family: Arial, sans-serif;
-            gap: 40px; /* Espacio entre el título y el botón */
+            gap: 40px;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Estilo del título Píxel Grande y Azul */
+        /* Animación de líneas de tecnología en movimiento de fondo */
+        body::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            width: 200%;
+            height: 200%;
+            background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="30" fill="rgba(155, 38, 182, 0.1)" font-family="monospace" font-size="10">0101</text><text x="50" y="70" fill="rgba(155, 38, 182, 0.08)" font-family="monospace" font-size="12">1010</text></svg>') repeat;
+            animation: techMove 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes techMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100px); }
+        }
+
+        /* Contenedor para asegurar que los elementos queden por encima del fondo animado */
+        .contenido-web {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* Estilo del título Píxel Grande y BLANCO */
         .titulo-pixel {
-            font-family: 'Press Start 2P', monospace; /* Aplica la fuente píxel */
-            font-size: 36px; /* Tamaño grande */
-            color: #00d2ff; /* Azul pixel brillante */
+            font-family: 'Press Start 2P', monospace;
+            font-size: 36px;
+            color: #ffffff; /* Título en blanco */
             text-align: center;
             text-transform: uppercase;
-            text-shadow: 4px 4px 0px #005f73; /* Sombra estilo retro */
+            text-shadow: 4px 4px 0px #6a0dad; /* Sombra morada estilo retro */
             margin: 0;
             padding: 0 20px;
         }
@@ -51,7 +90,7 @@
             cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+            box-shadow: 0 4px 25px rgba(128, 0, 128, 0.6); /* Brillo morado en el botón */
         }
 
         /* Efecto al pasar el ratón */
@@ -67,11 +106,13 @@
 </head>
 <body>
 
-    <h1 class="titulo-pixel">Zx_Ruru Comunity</h1>
+    <div class="contenido-web">
+        <h1 class="titulo-pixel">Zx_Ruru Comunity</h1>
 
-    <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
-        <i class="fa-brands fa-discord"></i> Discord
-    </a>
+        <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
+            <i class="fa-brands fa-discord"></i> Discord
+        </a>
+    </div>
 
 </body>
 </html>
