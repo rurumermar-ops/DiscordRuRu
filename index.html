@@ -18,6 +18,7 @@
             background-color: #0a0110;
             font-family: Arial, sans-serif;
             color: white;
+            scroll-behavior: smooth; /* Scroll suave al hacer clic */
         }
 
         /* CAPA DEL FONDO: Fija mientras bajas */
@@ -125,7 +126,7 @@
             width: 250px;
         }
 
-        /* Animación suave de flote */
+        /* Animación suave de flote para avatares e iconos */
         @keyframes flotar {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -143,25 +144,25 @@
             align-items: center;
         }
 
-        /* Círculo TikTok: Fondo negro con brillo morado/rosa */
+        /* Círculo TikTok */
         .container-tiktok { 
             background-color: #000000;
             box-shadow: 0 0 25px rgba(168, 85, 247, 0.8); 
         }
 
-        /* Círculo Roblox: Fondo gris oscuro premium con brillo blanco */
+        /* Círculo Roblox */
         .container-roblox { 
             background-color: #191b1d;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.6); 
         }
 
-        /* Estilos de los iconos grandes dentro del círculo */
+        /* Iconos grandes */
         .icon-floating {
             font-size: 65px;
             color: #ffffff;
         }
 
-        /* Sombra de color estilo glitch para el icono flotante de TikTok */
+        /* Sombra estilo glitch TikTok */
         .icon-tiktok-glow {
             text-shadow: -3px -3px 0px #69c9d0, 3px 3px 0px #ee1d52;
         }
@@ -212,6 +213,56 @@
         }
 
         .btn-tiktok i, .btn-roblox i { font-size: 20px; }
+
+        /* --- NUEVO: FLECHA MORADA FLOTANTE --- */
+        
+        /* Contenedor fijo en la parte derecha */
+        .scroll-arrow-container {
+            position: fixed;
+            right: 30px; /* Distancia del borde derecho */
+            bottom: 50px; /* Distancia del borde inferior */
+            z-index: 100; /* Por encima de todo */
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Animación de flote suave exclusiva para la flecha (más lenta y sutil) */
+        @keyframes flotarFlecha {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Estilo de la flecha morada */
+        .scroll-arrow {
+            font-size: 40px; /* Tamaño de la flecha */
+            color: #a855f7; /* Color morado principal */
+            animation: flotarFlecha 2.5s ease-in-out infinite; /* Animación de flote */
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.9); /* Brillo neón morado */
+        }
+
+        /* Texto opcional debajo de la flecha */
+        .scroll-text {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 8px;
+            color: #a855f7;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+        }
+
+        /* Ocultar la flecha cuando se hace scroll hacia abajo */
+        .scroll-arrow-container.hidden {
+            opacity: 0;
+            transform: translateY(20px); /* Pequeño movimiento hacia abajo al desaparecer */
+            pointer-events: none; /* Desactivar clics cuando está oculta */
+        }
+
     </style>
 </head>
 <body>
@@ -220,14 +271,14 @@
 
     <div class="wrapper">
         
-        <div class="seccion-top">
+        <div class="seccion-top" id="top">
             <h1 class="titulo-pixel">Zx_Ruru Comunity</h1>
             <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
                 <i class="fa-brands fa-discord"></i> Discord
             </a>
         </div>
 
-        <div class="seccion-bottom">
+        <div class="seccion-bottom" id="redes">
             
             <div class="perfil-card">
                 <div class="avatar-container container-tiktok">
@@ -250,6 +301,29 @@
         </div>
 
     </div>
+
+    <div class="scroll-arrow-container" id="scrollArrow" onclick="scrollToRedes()">
+        <i class="fa-solid fa-angles-down scroll-arrow"></i>
+        <span class="scroll-text">Scroll</span>
+    </div>
+
+    <script>
+        // Función para hacer scroll suave a la sección de redes
+        function scrollToRedes() {
+            document.getElementById('redes').scrollIntoView();
+        }
+
+        // Detectar el scroll para ocultar/mostrar la flecha
+        window.onscroll = function() {
+            var arrow = document.getElementById('scrollArrow');
+            // Si el usuario baja más de 100px, oculta la flecha
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                arrow.classList.add('hidden');
+            } else {
+                arrow.classList.remove('hidden');
+            }
+        };
+    </script>
 
 </body>
 </html>
