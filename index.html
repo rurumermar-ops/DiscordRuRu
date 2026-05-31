@@ -10,37 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
-        /* Fondo base oscuro */
-        body {
+        /* Permitimos el scroll en la página */
+        html, body {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #0a0110; /* Morado noche muy profundo */
+            min-height: 200vh; /* Hace la página el doble de alta para poder scrolear */
+            background-color: #0a0110;
             font-family: Arial, sans-serif;
-            overflow: hidden;
-            position: relative;
+            color: white;
         }
 
-        /* CAPA 1: Cuadrícula tecnológica brillante */
+        /* CAPA DEL FONDO: Se queda fija de fondo mientras haces scroll (background-attachment: fixed) */
         .grid-bg {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(147, 51, 234, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(147, 51, 234, 0.3) 1px, transparent 1px);
+                linear-gradient(rgba(147, 51, 234, 0.25) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(147, 51, 234, 0.25) 1px, transparent 1px);
             background-size: 50px 50px;
             background-position: center;
             z-index: 1;
         }
 
-        /* CAPA 2: Escáner láser en movimiento continuo */
+        /* Línea de escaneo láser fija que recorre la pantalla */
         .grid-bg::after {
             content: "";
             position: absolute;
@@ -48,8 +43,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.2), transparent);
-            animation: scanline 4s linear infinite;
+            background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.15), transparent);
+            animation: scanline 6s linear infinite;
         }
 
         @keyframes scanline {
@@ -57,29 +52,37 @@
             100% { transform: translateY(100%); }
         }
 
-        /* Contenedor principal por encima del fondo */
-        .contenido-web {
+        /* Contenedor del contenido que se desplaza hacia abajo */
+        .wrapper {
+            position: relative;
             z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 45px;
-            text-align: center;
+            width: 100%;
         }
 
-        /* Estilo del título Píxel Grande y Blanco */
+        /* SECCIÓN 1: La parte de arriba (Discord) */
+        .seccion-top {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 45px;
+        }
+
         .titulo-pixel {
             font-family: 'Press Start 2P', monospace;
             font-size: 38px;
             color: #ffffff;
             text-transform: uppercase;
-            text-shadow: 5px 5px 0px #a855f7; /* Sombra morada eléctrica */
+            text-shadow: 5px 5px 0px #a855f7;
             margin: 0;
             padding: 0 20px;
-            letter-spacing: 2px;
+            text-align: center;
         }
 
-        /* Estilo del botón de Discord */
         .btn-discord {
             display: inline-flex;
             align-items: center;
@@ -94,18 +97,104 @@
             cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 25px rgba(168, 85, 247, 0.7); /* Brillo de neón morado */
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
         }
 
-        /* Efectos interactivos del botón */
         .btn-discord:hover {
             background-color: #4752C4;
             transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(168, 85, 247, 0.9);
+            box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);
         }
 
-        .btn-discord i {
-            font-size: 26px;
+        /* SECCIÓN 2: La parte de abajo (TikTok y Roblox) */
+        .seccion-bottom {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 80px;
+            padding-top: 60px;
+            flex-wrap: wrap; /* Se adapta si se mira desde el móvil */
+        }
+
+        /* Bloques de los perfiles */
+        .perfil-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 250px;
+        }
+
+        /* Animación de flotar suave */
+        @keyframes flotar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Imágenes redondas flotantes */
+        .img-perfil {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            animation: flotar 4s ease-in-out infinite;
+            border: 3px solid #ffffff;
+        }
+
+        /* Borde brillante morado/rosa para las fotos */
+        .img-tiktok { box-shadow: 0 0 20px #ee1d52, 0 0 20px #69c9d0; }
+        .img-roblox { box-shadow: 0 0 20px #ffffff; }
+
+        /* Botón Estilo TikTok */
+        .btn-tiktok {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #000000;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: -3px -3px 0px #69c9d0, 3px 3px 0px #ee1d52; /* Efecto glitch clásico de TikTok */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-tiktok:hover {
+            transform: scale(1.05);
+            box-shadow: -5px -5px 0px #69c9d0, 5px 5px 0px #ee1d52;
+        }
+
+        /* Botón Estilo Roblox (Gris oscuro/plateado premium) */
+        .btn-roblox {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #191b1d;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-roblox:hover {
+            transform: scale(1.05);
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Ajustes de iconos internos */
+        .btn-tiktok i, .btn-roblox i {
+            font-size: 20px;
         }
     </style>
 </head>
@@ -113,12 +202,33 @@
 
     <div class="grid-bg"></div>
 
-    <div class="contenido-web">
-        <h1 class="titulo-pixel">Zx_Ruru Comunity</h1>
+    <div class="wrapper">
         
-        <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
-            <i class="fa-brands fa-discord"></i> Discord
-        </a>
+        <div class="seccion-top">
+            <h1 class="titulo-pixel">Zx_Ruru Comunity</h1>
+            <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
+                <i class="fa-brands fa-discord"></i> Discord
+            </a>
+        </div>
+
+        <div class="seccion-bottom">
+            
+            <div class="perfil-card">
+                <img src="https://ui-avatars.com/api/?name=ZX&background=ee1d52&color=fff&size=128" alt="TikTok avatar" class="img-perfil img-tiktok">
+                <a href="https://www.tiktok.com/@zx_deep" target="_blank" class="btn-tiktok">
+                    <i class="fa-brands fa-tiktok"></i> TikTok
+                </a>
+            </div>
+
+            <div class="perfil-card">
+                <img src="https://ui-avatars.com/api/?name=RB&background=191b1d&color=fff&size=128" alt="Roblox avatar" class="img-perfil img-roblox">
+                <a href="https://www.roblox.com/es/users/4049770594/profile" target="_blank" class="btn-roblox">
+                    <i class="fa-solid fa-cube"></i> Roblox
+                </a>
+            </div>
+
+        </div>
+
     </div>
 
 </body>
