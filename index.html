@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
-        /* Fondo base oscuro con animación tecnológica morada */
+        /* Fondo base oscuro */
         body {
             margin: 0;
             padding: 0;
@@ -19,96 +19,103 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #0d0214; /* Fondo morado ultra oscuro */
-            
-            /* Creación de una rejilla tecnológica usando gradientes */
-            background-image: 
-                linear-gradient(rgba(128, 0, 128, 0.15) 2px, transparent 2px),
-                linear-gradient(90px, rgba(128, 0, 128, 0.15) 2px, transparent 2px);
-            background-size: 40px 40px;
-            background-position: center;
-            
+            background-color: #0a0110; /* Morado noche muy profundo */
             font-family: Arial, sans-serif;
-            gap: 40px;
             overflow: hidden;
             position: relative;
         }
 
-        /* Animación de líneas de tecnología en movimiento de fondo */
-        body::before {
-            content: "";
+        /* CAPA 1: Cuadrícula tecnológica brillante */
+        .grid-bg {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            right: -50%;
-            bottom: -50%;
-            width: 200%;
-            height: 200%;
-            background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="30" fill="rgba(155, 38, 182, 0.1)" font-family="monospace" font-size="10">0101</text><text x="50" y="70" fill="rgba(155, 38, 182, 0.08)" font-family="monospace" font-size="12">1010</text></svg>') repeat;
-            animation: techMove 20s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(147, 51, 234, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(147, 51, 234, 0.3) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center;
             z-index: 1;
         }
 
-        @keyframes techMove {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100px); }
+        /* CAPA 2: Escáner láser en movimiento continuo */
+        .grid-bg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.2), transparent);
+            animation: scanline 4s linear infinite;
         }
 
-        /* Contenedor para asegurar que los elementos queden por encima del fondo animado */
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Contenedor principal por encima del fondo */
         .contenido-web {
             z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 45px;
+            text-align: center;
         }
 
-        /* Estilo del título Píxel Grande y BLANCO */
+        /* Estilo del título Píxel Grande y Blanco */
         .titulo-pixel {
             font-family: 'Press Start 2P', monospace;
-            font-size: 36px;
-            color: #ffffff; /* Título en blanco */
-            text-align: center;
+            font-size: 38px;
+            color: #ffffff;
             text-transform: uppercase;
-            text-shadow: 4px 4px 0px #6a0dad; /* Sombra morada estilo retro */
+            text-shadow: 5px 5px 0px #a855f7; /* Sombra morada eléctrica */
             margin: 0;
             padding: 0 20px;
+            letter-spacing: 2px;
         }
 
         /* Estilo del botón de Discord */
         .btn-discord {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 18px 36px;
-            font-size: 20px;
+            gap: 14px;
+            padding: 18px 40px;
+            font-size: 22px;
             font-weight: bold;
             color: white;
-            background-color: #5865F2; /* Azul Discord */
+            background-color: #5865F2;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 25px rgba(128, 0, 128, 0.6); /* Brillo morado en el botón */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.7); /* Brillo de neón morado */
         }
 
-        /* Efecto al pasar el ratón */
+        /* Efectos interactivos del botón */
         .btn-discord:hover {
             background-color: #4752C4;
             transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(168, 85, 247, 0.9);
         }
 
         .btn-discord i {
-            font-size: 24px;
+            font-size: 26px;
         }
     </style>
 </head>
 <body>
 
+    <div class="grid-bg"></div>
+
     <div class="contenido-web">
         <h1 class="titulo-pixel">Zx_Ruru Comunity</h1>
-
+        
         <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
             <i class="fa-brands fa-discord"></i> Discord
         </a>
