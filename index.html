@@ -132,27 +132,38 @@
             100% { transform: translateY(0px); }
         }
 
-        /* Círculos contenedores */
+        /* Círculos contenedores de los iconos flotantes */
         .avatar-container {
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            overflow: hidden;
             animation: flotar 4s ease-in-out infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: transparent;
         }
 
-        .container-tiktok { box-shadow: 0 0 25px rgba(168, 85, 247, 0.8); }
-        .container-roblox { box-shadow: 0 0 25px rgba(255, 255, 255, 0.6); }
+        /* Círculo TikTok: Fondo negro con brillo morado/rosa */
+        .container-tiktok { 
+            background-color: #000000;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.8); 
+        }
 
-        /* LA SOLUCIÓN: Ajuste completo exacto para tus imágenes circulares */
-        .img-tiktok, .img-roblox {
-            width: 100%;
-            height: 100%;
-            object-fit: fill; /* Hace que tu imagen circular ocupe todo el espacio de forma perfecta */
+        /* Círculo Roblox: Fondo gris oscuro premium con brillo blanco */
+        .container-roblox { 
+            background-color: #191b1d;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6); 
+        }
+
+        /* Estilos de los iconos grandes dentro del círculo */
+        .icon-floating {
+            font-size: 65px;
+            color: #ffffff;
+        }
+
+        /* Sombra de color estilo glitch para el icono flotante de TikTok */
+        .icon-tiktok-glow {
+            text-shadow: -3px -3px 0px #69c9d0, 3px 3px 0px #ee1d52;
         }
 
         /* Botón TikTok */
@@ -220,7 +231,7 @@
             
             <div class="perfil-card">
                 <div class="avatar-container container-tiktok">
-                    <img src="https://raw.githubusercontent.com/rurumermar-ops/DiscordRuRu/main/Tiktok.png" alt="TikTok Zx_Deep" class="img-tiktok">
+                    <i class="fa-brands fa-tiktok icon-floating icon-tiktok-glow"></i>
                 </div>
                 <a href="https://www.tiktok.com/@zx_deep" target="_blank" class="btn-tiktok">
                     <i class="fa-brands fa-tiktok"></i> TikTok
@@ -229,7 +240,7 @@
 
             <div class="perfil-card">
                 <div class="avatar-container container-roblox">
-                    <img src="https://raw.githubusercontent.com/rurumermar-ops/DiscordRuRu/main/Roblox.png" alt="Roblox Profile" class="img-roblox">
+                    <i class="fa-solid fa-cube icon-floating"></i>
                 </div>
                 <a href="https://www.roblox.com/es/users/4049770594/profile" target="_blank" class="btn-roblox">
                     <i class="fa-solid fa-cube"></i> Roblox
