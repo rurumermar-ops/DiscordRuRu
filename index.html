@@ -17,7 +17,6 @@
             font-family: Arial, sans-serif;
             color: white;
             scroll-behavior: smooth;
-            /* Evita que se pueda hacer scroll hacia los lados accidentalmente */
             overflow-x: hidden; 
         }
 
@@ -53,10 +52,10 @@
             100% { transform: translateY(100%); }
         }
 
-        /* --- NUEVO: SISTEMA DE DESLIZADOR CARTOON --- */
+        /* --- SISTEMA DE DESLIZADOR CARTOON --- */
         .deslizador {
             display: flex;
-            width: 200vw; /* Doble de ancho para contener las dos pantallas */
+            width: 200vw; 
             position: relative;
             z-index: 2;
             transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -68,7 +67,7 @@
 
         .pantalla {
             width: 100vw;
-            flex-shrink: 0; /* Evita que las pantallas se aplasten */
+            flex-shrink: 0; 
         }
 
         /* Contenedor principal de tu diseño original */
@@ -136,6 +135,19 @@
             padding-top: 40px;
             width: 100%;
             max-width: 1000px;
+        }
+
+        /* Título TIENDA sobre los slots */
+        .titulo-tienda {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 28px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0px #a855f7;
+            margin: 0;
+            margin-bottom: -30px; /* Acerca el título un poco más a la caja */
+            text-align: center;
+            z-index: 5;
         }
 
         /* --- TABLA / LISTA HORIZONTAL ESCROLLEABLE --- */
@@ -371,8 +383,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Ocupa solo la vista actual */
-            position: sticky; /* Se pega a la pantalla sin importar si el usuario bajó mucho */
+            height: 100vh; 
+            position: sticky; 
             top: 0;
         }
 
@@ -446,6 +458,8 @@
                 </div>
 
                 <div class="seccion-bottom" id="redes">
+                    
+                    <h2 class="titulo-tienda">TIENDA</h2>
                     
                     <div class="tabla-horizontal-container">
                         <div class="tabla-horizontal">
@@ -528,7 +542,7 @@
                     <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
                         <i class="fa-brands fa-discord"></i> Ir al servidor
                     </a>
-                    <button id="btn-volver" class="btn-volver">Volver a los slots</button>
+                    <button id="btn-volver" class="btn-volver">Volver a Tienda</button>
                 </div>
             </div>
         </div>
@@ -546,7 +560,6 @@
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 arrow.classList.add('hidden');
             } else {
-                // Solo mostrar la flecha si no estamos en la pantalla 2
                 if(!document.getElementById('deslizador').classList.contains('mover-derecha')){
                     arrow.classList.remove('hidden');
                 }
@@ -559,19 +572,17 @@
         const btnVolver = document.getElementById('btn-volver');
         const scrollArrow = document.getElementById('scrollArrow');
 
-        // Mueve a la derecha al pulsar cualquier Buy
         botonesBuy.forEach(boton => {
             boton.addEventListener('click', () => {
                 deslizador.classList.add('mover-derecha');
-                scrollArrow.style.display = 'none'; // Oculta la flecha morada en la nueva pantalla
+                scrollArrow.style.display = 'none'; 
             });
         });
 
-        // Vuelve a la izquierda al pulsar Volver
         btnVolver.addEventListener('click', () => {
             deslizador.classList.remove('mover-derecha');
             setTimeout(() => {
-                scrollArrow.style.display = 'flex'; // Vuelve a mostrar la flecha cuando termina la animación
+                scrollArrow.style.display = 'flex'; 
             }, 600);
         });
     </script>
