@@ -132,16 +132,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between; 
+            justify-content: space-between; /* Ajustado para empujar el contador abajo */
             gap: 60px;
             padding-top: 40px;
-            padding-bottom: 20px; 
+            padding-bottom: 20px; /* Espacio inferior para el contador */
             width: 100%;
             max-width: 1000px;
             box-sizing: border-box;
         }
 
-        /* Contenedor interno para agrupar Tienda y Redes */
+        /* Contenedor interno para agrupar Tienda y Redes manteniendo su separación */
         .contenido-secundario {
             display: flex;
             flex-direction: column;
@@ -228,19 +228,11 @@
             margin: 10px 0;
         }
 
-        /* Icono Azul para la Web Personalizada */
+        /* NUEVO: Icono Azul para la Web Personalizada */
         .slot-icon-blue {
             font-size: 55px;
             color: #3b82f6;
             filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.7));
-            margin: 10px 0;
-        }
-
-        /* NUEVO: Icono Discord Blurple para el Bot Personalizado */
-        .slot-icon-discord {
-            font-size: 55px;
-            color: #5865F2;
-            filter: drop-shadow(0 0 12px rgba(88, 101, 242, 0.7));
             margin: 10px 0;
         }
 
@@ -413,7 +405,7 @@
             pointer-events: none;
         }
 
-        /* --- ESTILO DEL CONTADOR DE VISITAS --- */
+        /* --- NUEVO: ESTILO DEL CONTADOR DE VISITAS (Chiquitito abajo del todo) --- */
         .contador-visitas {
             font-family: 'Press Start 2P', monospace;
             font-size: 9px;
@@ -429,7 +421,7 @@
             font-weight: bold;
         }
 
-        /* --- ESTILOS DE LA PANTALLA DE DISCORD --- */
+        /* --- ESTILOS DE LA NUEVA PANTALLA DE DISCORD --- */
         .pantalla-discord {
             display: flex;
             flex-direction: column;
@@ -536,8 +528,8 @@
                                 </div>
                                 
                                 <div class="slot-item">
-                                    <p class="slot-title">BOT PERSONALIZADO</p>
-                                    <i class="fa-brands fa-discord slot-icon-discord"></i>
+                                    <p class="slot-title">SLOT 04</p>
+                                    <i class="fa-solid fa-box-open slot-icon-box"></i>
                                     <button class="btn-buy">Buy</button>
                                 </div>
                                 
@@ -612,4 +604,6 @@
             document.getElementById('redes').scrollIntoView();
         }
 
-   
+        window.onscroll = function() {
+            var arrow = document.getElementById('scrollArrow');
+            if (d
