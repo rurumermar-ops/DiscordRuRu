@@ -14,11 +14,11 @@
         html, body {
             margin: 0;
             padding: 0;
-            min-height: 200vh;
+            min-height: 220vh;
             background-color: #0a0110;
             font-family: Arial, sans-serif;
             color: white;
-            scroll-behavior: smooth; /* Scroll suave al hacer clic */
+            scroll-behavior: smooth;
         }
 
         /* CAPA DEL FONDO: Fija mientras bajas */
@@ -107,15 +107,105 @@
             box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);
         }
 
-        /* SECCIÓN 2: Abajo (TikTok y Roblox) */
+        /* SECCIÓN 2: Abajo (Contiene la tabla horizontal y las redes) */
         .seccion-bottom {
-            min-height: 100vh;
+            min-height: 120vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            padding-top: 40px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* --- NUEVO: TABLA / LISTA HORIZONTAL ESCROLLEABLE --- */
+        .tabla-horizontal-container {
+            width: 90%;
+            background-color: rgba(25, 10, 40, 0.6);
+            border: 2px solid #a855f7;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+            box-sizing: border-box;
+        }
+
+        .tabla-horizontal {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto; /* Permite escrollear hacia los lados */
+            padding-bottom: 15px;
+            scroll-behavior: smooth;
+        }
+
+        /* Personalización de la barra de scroll de la tabla */
+        .tabla-horizontal::-webkit-scrollbar {
+            height: 8px;
+        }
+        .tabla-horizontal::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+        .tabla-horizontal::-webkit-scrollbar-thumb {
+            background: #a855f7;
+            border-radius: 4px;
+        }
+
+        /* Estilo de cada Slot */
+        .slot-item {
+            flex: 0 0 160px; /* Ancho fijo para cada slot */
+            background-color: #130321;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 180px;
+            box-sizing: border-box;
+        }
+
+        /* Contenido temporal dentro del slot */
+        .slot-content {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+        }
+
+        /* Botón verde BUY abajo */
+        .btn-buy {
+            width: 100%;
+            padding: 8px 0;
+            background-color: #22c55e; /* Verde */
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-buy:hover {
+            background-color: #16a34a;
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
+        }
+
+        /* --- CONTENEDOR DE REDES (TIKTOK Y ROBLOX) --- */
+        .redes-container {
             display: flex;
             justify-content: center;
             align-items: flex-start;
             gap: 80px;
-            padding-top: 60px;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .perfil-card {
@@ -126,7 +216,7 @@
             width: 250px;
         }
 
-        /* Animación suave de flote para avatares e iconos */
+        /* Animación suave de flote */
         @keyframes flotar {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -214,14 +304,12 @@
 
         .btn-tiktok i, .btn-roblox i { font-size: 20px; }
 
-        /* --- NUEVO: FLECHA MORADA FLOTANTE --- */
-        
-        /* Contenedor fijo en la parte derecha */
+        /* FLECHA MORADA FLOTANTE */
         .scroll-arrow-container {
             position: fixed;
-            right: 30px; /* Distancia del borde derecho */
-            bottom: 50px; /* Distancia del borde inferior */
-            z-index: 100; /* Por encima de todo */
+            right: 30px;
+            bottom: 50px;
+            z-index: 100;
             opacity: 1;
             transition: opacity 0.5s ease, transform 0.5s ease;
             cursor: pointer;
@@ -231,22 +319,19 @@
             gap: 5px;
         }
 
-        /* Animación de flote suave exclusiva para la flecha (más lenta y sutil) */
         @keyframes flotarFlecha {
             0% { transform: translateY(0px); }
             50% { transform: translateY(15px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Estilo de la flecha morada */
         .scroll-arrow {
-            font-size: 40px; /* Tamaño de la flecha */
-            color: #a855f7; /* Color morado principal */
-            animation: flotarFlecha 2.5s ease-in-out infinite; /* Animación de flote */
-            text-shadow: 0 0 15px rgba(168, 85, 247, 0.9); /* Brillo neón morado */
+            font-size: 40px;
+            color: #a855f7;
+            animation: flotarFlecha 2.5s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.9);
         }
 
-        /* Texto opcional debajo de la flecha */
         .scroll-text {
             font-family: 'Press Start 2P', monospace;
             font-size: 8px;
@@ -256,11 +341,10 @@
             text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
         }
 
-        /* Ocultar la flecha cuando se hace scroll hacia abajo */
         .scroll-arrow-container.hidden {
             opacity: 0;
-            transform: translateY(20px); /* Pequeño movimiento hacia abajo al desaparecer */
-            pointer-events: none; /* Desactivar clics cuando está oculta */
+            transform: translateY(20px);
+            pointer-events: none;
         }
 
     </style>
@@ -271,7 +355,7 @@
 
     <div class="wrapper">
         
-        <div class="seccion-top" id="top">
+        <div class="seccion-top">
             <h1 class="titulo-pixel">Zx_Ruru Comunity</h1>
             <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
                 <i class="fa-brands fa-discord"></i> Discord
@@ -280,22 +364,60 @@
 
         <div class="seccion-bottom" id="redes">
             
-            <div class="perfil-card">
-                <div class="avatar-container container-tiktok">
-                    <i class="fa-brands fa-tiktok icon-floating icon-tiktok-glow"></i>
+            <div class="tabla-horizontal-container">
+                <div class="tabla-horizontal">
+                    
+                    <div class="slot-item">
+                        <div class="slot-content">SLOT 01</div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+                    
+                    <div class="slot-item">
+                        <div class="slot-content">SLOT 02</div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+                    
+                    <div class="slot-item">
+                        <div class="slot-content">SLOT 03</div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+                    
+                    <div class="slot-item">
+                        <div class="slot-content">SLOT 04</div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+                    
+                    <div class="slot-item">
+                        <div class="slot-content">SLOT 05</div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+
+                    <div class="slot-item">
+                        <div class="slot-content">SLOT 06</div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+
                 </div>
-                <a href="https://www.tiktok.com/@zx_deep" target="_blank" class="btn-tiktok">
-                    <i class="fa-brands fa-tiktok"></i> TikTok
-                </a>
             </div>
 
-            <div class="perfil-card">
-                <div class="avatar-container container-roblox">
-                    <i class="fa-solid fa-cube icon-floating"></i>
+            <div class="redes-container">
+                <div class="perfil-card">
+                    <div class="avatar-container container-tiktok">
+                        <i class="fa-brands fa-tiktok icon-floating icon-tiktok-glow"></i>
+                    </div>
+                    <a href="https://www.tiktok.com/@zx_deep" target="_blank" class="btn-tiktok">
+                        <i class="fa-brands fa-tiktok"></i> TikTok
+                    </a>
                 </div>
-                <a href="https://www.roblox.com/es/users/4049770594/profile" target="_blank" class="btn-roblox">
-                    <i class="fa-solid fa-cube"></i> Roblox
-                </a>
+
+                <div class="perfil-card">
+                    <div class="avatar-container container-roblox">
+                        <i class="fa-solid fa-cube icon-floating"></i>
+                    </div>
+                    <a href="https://www.roblox.com/es/users/4049770594/profile" target="_blank" class="btn-roblox">
+                        <i class="fa-solid fa-cube"></i> Roblox
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -308,15 +430,12 @@
     </div>
 
     <script>
-        // Función para hacer scroll suave a la sección de redes
         function scrollToRedes() {
             document.getElementById('redes').scrollIntoView();
         }
 
-        // Detectar el scroll para ocultar/mostrar la flecha
         window.onscroll = function() {
             var arrow = document.getElementById('scrollArrow');
-            // Si el usuario baja más de 100px, oculta la flecha
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 arrow.classList.add('hidden');
             } else {
