@@ -343,46 +343,52 @@
             color: #000000;
         }
 
-        /* FLECHA MORADA FLOTANTE ORIGINAL */
+        /* --- FLECHA MORADA ACTUALIZADA (Más grande y con mejor animación) --- */
         .scroll-arrow-container {
             position: fixed;
-            right: 30px;
-            bottom: 50px;
+            right: 40px;
+            bottom: 45px;
             z-index: 100;
             opacity: 1;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            user-select: none;
         }
 
         @keyframes flotarFlecha {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(15px); }
+            45% { transform: translateY(12px); }
+            55% { transform: translateY(12px); }
             100% { transform: translateY(0px); }
         }
 
         .scroll-arrow {
-            font-size: 40px;
+            font-size: 55px; /* Más grande (Antes 40px) */
             color: #a855f7;
-            animation: flotarFlecha 2.5s ease-in-out infinite;
-            text-shadow: 0 0 15px rgba(168, 85, 247, 0.9);
+            animation: flotarFlecha 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.9));
         }
 
         .scroll-text {
             font-family: 'Press Start 2P', monospace;
-            font-size: 8px;
+            font-size: 12px; /* Más grande (Antes 8px) */
             color: #a855f7;
             text-transform: uppercase;
             text-align: center;
-            text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
+        }
+
+        .scroll-arrow-container:hover .scroll-arrow {
+            color: #c084fc;
         }
 
         .scroll-arrow-container.hidden {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             pointer-events: none;
         }
 
@@ -559,25 +565,22 @@
     </div>
 
     <script>
-        // Funciones originales del scroll
         function scrollToRedes() {
             document.getElementById('redes').scrollIntoView();
         }
 
         window.onscroll = function() {
             var arrow = document.getElementById('scrollArrow');
-            // Gestión de visibilidad de la flecha original hacia abajo
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 arrow.classList.add('hidden');
             } else {
-                // Solo mostrar la flecha si NO estamos movidos a la derecha
                 if(!document.getElementById('deslizador').classList.contains('mover-derecha')){
                     arrow.classList.remove('hidden');
                 }
             }
         };
 
-        // --- MAGIA DEL DESLIZADOR (ACTUALIZADO) ---
+        // --- SCRIPT COMPLETO DEL DESLIZADOR ---
         const botonesBuy = document.querySelectorAll('.btn-buy');
         const deslizador = document.getElementById('deslizador');
         const btnVolver = document.getElementById('btn-volver');
@@ -585,31 +588,26 @@
 
         botonesBuy.forEach(boton => {
             boton.addEventListener('click', () => {
-                // 1. Ocultar la flecha de scroll original inmediatamente
-                scrollArrow.style.display = 'none'; 
+                // 1. Ocultar la flecha por completo
+                scrollArrow.classList.add('hidden');
                 
-                // 2. LA SOLUCIÓN: Subir al principio de la página AUTOMÁTICAMENTE
-                // Usamos behavior: 'instant' para que suba rápido ANTES de la animación horizontal
-                window.scrollTo({ top: 0, behavior: 'instant' });
+                // 2. Mover la pantalla al tope de la página antes del cambio para evitar roturas visuales
+                window.scrollTo({ top: 0, behavior: 'auto' });
                 
-                // 3. Activar la animación horizontal cartoon
+                // 3. Activar animación de deslizamiento a la derecha
                 deslizador.classList.add('mover-derecha');
             });
         });
 
         btnVolver.addEventListener('click', () => {
-            // Volver a la pantalla principal
+            // Regresar el deslizador a la izquierda
             deslizador.classList.remove('mover-derecha');
             
-            // Restaurar la flecha de scroll original después de que termine la animación
-            setTimeout(() => {
-                // Volvemos a chequear si debe estar visible según el scroll actual
-                if (!(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)) {
-                    scrollArrow.style.display = 'flex'; 
-                }
-            }, 700); // 700ms coincide con el tiempo de la transición CSS
+            // Devolver visibilidad a la flecha original de scroll tras regresar
+            if (document.documentElement.scrollTop <= 100) {
+                scrollArrow.classList.remove('hidden');
+            }
         });
     </script>
-
 </body>
 </html>
