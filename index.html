@@ -77,7 +77,6 @@
             align-items: center;
             width: 100%;
             min-height: 220vh;
-            position: relative;
         }
 
         /* SECCIÓN 1: Arriba (Discord) */
@@ -126,28 +125,16 @@
             box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);
         }
 
-        /* SECCIÓN 2: Abajo (Contiene la tabla horizontal, redes y contador) */
+        /* SECCIÓN 2: Abajo (Contiene la tabla horizontal y las redes) */
         .seccion-bottom {
             min-height: 120vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between; /* Ajustado para empujar el contador abajo */
             gap: 60px;
             padding-top: 40px;
-            padding-bottom: 20px; /* Espacio inferior para el contador */
             width: 100%;
             max-width: 1000px;
-            box-sizing: border-box;
-        }
-
-        /* Contenedor interno para agrupar Tienda y Redes manteniendo su separación */
-        .contenido-secundario {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 60px;
-            width: 100%;
         }
 
         /* Título TIENDA sobre los slots */
@@ -356,69 +343,47 @@
             color: #000000;
         }
 
-        /* --- FLECHA MORADA ACTUALIZADA --- */
+        /* FLECHA MORADA FLOTANTE ORIGINAL */
         .scroll-arrow-container {
             position: fixed;
-            right: 40px;
-            bottom: 45px;
+            right: 30px;
+            bottom: 50px;
             z-index: 100;
             opacity: 1;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            transition: opacity 0.5s ease, transform 0.5s ease;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            user-select: none;
+            gap: 5px;
         }
 
         @keyframes flotarFlecha {
             0% { transform: translateY(0px); }
-            45% { transform: translateY(12px); }
-            55% { transform: translateY(12px); }
+            50% { transform: translateY(15px); }
             100% { transform: translateY(0px); }
         }
 
         .scroll-arrow {
-            font-size: 55px; 
+            font-size: 40px;
             color: #a855f7;
-            animation: flotarFlecha 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.9));
+            animation: flotarFlecha 2.5s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.9);
         }
 
         .scroll-text {
             font-family: 'Press Start 2P', monospace;
-            font-size: 12px; 
+            font-size: 8px;
             color: #a855f7;
             text-transform: uppercase;
             text-align: center;
-            text-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
-        }
-
-        .scroll-arrow-container:hover .scroll-arrow {
-            color: #c084fc;
+            text-shadow: 0 0 5px rgba(168, 85, 247, 0.5);
         }
 
         .scroll-arrow-container.hidden {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
             pointer-events: none;
-        }
-
-        /* --- NUEVO: ESTILO DEL CONTADOR DE VISITAS (Chiquitito abajo del todo) --- */
-        .contador-visitas {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 9px;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: center;
-            width: 100%;
-            letter-spacing: 1px;
-            margin-top: 40px;
-            text-shadow: 0 0 5px rgba(168, 85, 247, 0.3);
-        }
-        .contador-visitas span {
-            color: #a855f7;
-            font-weight: bold;
         }
 
         /* --- ESTILOS DE LA NUEVA PANTALLA DE DISCORD --- */
@@ -503,74 +468,68 @@
 
                 <div class="seccion-bottom" id="redes">
                     
-                    <div class="contenido-secundario">
-                        <h2 class="titulo-tienda">TIENDA</h2>
-                        
-                        <div class="tabla-horizontal-container">
-                            <div class="tabla-horizontal">
-                                
-                                <div class="slot-item">
-                                    <p class="slot-title">Ketupat Radioactivo ☢️<br>+500M</p>
-                                    <i class="fa-solid fa-box-open slot-icon-box"></i>
-                                    <button class="btn-buy">Buy</button>
-                                </div>
-                                
-                                <div class="slot-item">
-                                    <p class="slot-title">Swaggy Bros 🥫<br>+900M</p>
-                                    <i class="fa-solid fa-box-open slot-icon-box"></i>
-                                    <button class="btn-buy">Buy</button>
-                                </div>
-                                
-                                <div class="slot-item">
-                                    <p class="slot-title">Web Personalizada</p>
-                                    <i class="fa-solid fa-clipboard-list slot-icon-blue"></i>
-                                    <button class="btn-buy">Buy</button>
-                                </div>
-                                
-                                <div class="slot-item">
-                                    <p class="slot-title">SLOT 04</p>
-                                    <i class="fa-solid fa-box-open slot-icon-box"></i>
-                                    <button class="btn-buy">Buy</button>
-                                </div>
-                                
-                                <div class="slot-item">
-                                    <p class="slot-title">SLOT 05</p>
-                                    <i class="fa-solid fa-box-open slot-icon-box"></i>
-                                    <button class="btn-buy">Buy</button>
-                                </div>
-
-                                <div class="slot-item">
-                                    <p class="slot-title">SLOT 06</p>
-                                    <i class="fa-solid fa-box-open slot-icon-box"></i>
-                                    <button class="btn-buy">Buy</button>
-                                </div>
-
+                    <h2 class="titulo-tienda">TIENDA</h2>
+                    
+                    <div class="tabla-horizontal-container">
+                        <div class="tabla-horizontal">
+                            
+                            <div class="slot-item">
+                                <p class="slot-title">Ketupat Radioactivo ☢️<br>+500M</p>
+                                <i class="fa-solid fa-box-open slot-icon-box"></i>
+                                <button class="btn-buy">Buy</button>
                             </div>
-                        </div>
-
-                        <div class="redes-container">
-                            <div class="perfil-card">
-                                <div class="avatar-container container-tiktok">
-                                    <i class="fa-brands fa-tiktok icon-floating icon-tiktok-glow"></i>
-                                </div>
-                                <a href="https://www.tiktok.com/@zx_deep" target="_blank" class="btn-tiktok">
-                                    <i class="fa-brands fa-tiktok"></i> TikTok
-                                </a>
+                            
+                            <div class="slot-item">
+                                <p class="slot-title">Swaggy Bros 🥫<br>+900M</p>
+                                <i class="fa-solid fa-box-open slot-icon-box"></i>
+                                <button class="btn-buy">Buy</button>
+                            </div>
+                            
+                            <div class="slot-item">
+                                <p class="slot-title">Web Personalizada</p>
+                                <i class="fa-solid fa-clipboard-list slot-icon-blue"></i>
+                                <button class="btn-buy">Buy</button>
+                            </div>
+                            
+                            <div class="slot-item">
+                                <p class="slot-title">SLOT 04</p>
+                                <i class="fa-solid fa-box-open slot-icon-box"></i>
+                                <button class="btn-buy">Buy</button>
+                            </div>
+                            
+                            <div class="slot-item">
+                                <p class="slot-title">SLOT 05</p>
+                                <i class="fa-solid fa-box-open slot-icon-box"></i>
+                                <button class="btn-buy">Buy</button>
                             </div>
 
-                            <div class="perfil-card">
-                                <div class="avatar-container container-roblox">
-                                    <i class="fa-solid fa-cube icon-floating"></i>
-                                </div>
-                                <a href="https://www.roblox.com/es/users/4049770594/profile" target="_blank" class="btn-roblox">
-                                    <i class="fa-solid fa-cube"></i> Roblox
-                                </a>
+                            <div class="slot-item">
+                                <p class="slot-title">SLOT 06</p>
+                                <i class="fa-solid fa-box-open slot-icon-box"></i>
+                                <button class="btn-buy">Buy</button>
                             </div>
+
                         </div>
                     </div>
 
-                    <div class="contador-visitas">
-                        VISITAS: <span id="numero-visitas">Cargando...</span>
+                    <div class="redes-container">
+                        <div class="perfil-card">
+                            <div class="avatar-container container-tiktok">
+                                <i class="fa-brands fa-tiktok icon-floating icon-tiktok-glow"></i>
+                            </div>
+                            <a href="https://www.tiktok.com/@zx_deep" target="_blank" class="btn-tiktok">
+                                <i class="fa-brands fa-tiktok"></i> TikTok
+                            </a>
+                        </div>
+
+                        <div class="perfil-card">
+                            <div class="avatar-container container-roblox">
+                                <i class="fa-solid fa-cube icon-floating"></i>
+                            </div>
+                            <a href="https://www.roblox.com/es/users/4049770594/profile" target="_blank" class="btn-roblox">
+                                <i class="fa-solid fa-cube"></i> Roblox
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -600,10 +559,46 @@
     </div>
 
     <script>
+        // Funciones originales del scroll
         function scrollToRedes() {
             document.getElementById('redes').scrollIntoView();
         }
 
         window.onscroll = function() {
             var arrow = document.getElementById('scrollArrow');
-            if (d
+            // Gestión de visibilidad de la flecha original hacia abajo
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                arrow.classList.add('hidden');
+            } else {
+                // Solo mostrar la flecha si NO estamos movidos a la derecha
+                if(!document.getElementById('deslizador').classList.contains('mover-derecha')){
+                    arrow.classList.remove('hidden');
+                }
+            }
+        };
+
+        // --- MAGIA DEL DESLIZADOR (ACTUALIZADO) ---
+        const botonesBuy = document.querySelectorAll('.btn-buy');
+        const deslizador = document.getElementById('deslizador');
+        const btnVolver = document.getElementById('btn-volver');
+        const scrollArrow = document.getElementById('scrollArrow');
+
+        botonesBuy.forEach(boton => {
+            boton.addEventListener('click', () => {
+                // 1. Ocultar la flecha de scroll original inmediatamente
+                scrollArrow.style.display = 'none'; 
+                
+                // 2. LA SOLUCIÓN: Subir al principio de la página AUTOMÁTICAMENTE
+                // Usamos behavior: 'instant' para que suba rápido ANTES de la animación horizontal
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                
+                // 3. Activar la animación horizontal cartoon
+                deslizador.classList.add('mover-derecha');
+            });
+        });
+
+        btnVolver.addEventListener('click', () => {
+            // Volver a la pantalla principal
+            deslizador.classList.remove('mover-derecha');
+            
+            // Restaurar la flecha de scroll original 
