@@ -343,7 +343,7 @@
             color: #000000;
         }
 
-        /* FLECHA MORADA FLOTANTE */
+        /* FLECHA MORADA FLOTANTE ORIGINAL */
         .scroll-arrow-container {
             position: fixed;
             right: 30px;
@@ -566,16 +566,18 @@
 
         window.onscroll = function() {
             var arrow = document.getElementById('scrollArrow');
+            // Gestión de visibilidad de la flecha original hacia abajo
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 arrow.classList.add('hidden');
             } else {
+                // Solo mostrar la flecha si NO estamos movidos a la derecha
                 if(!document.getElementById('deslizador').classList.contains('mover-derecha')){
                     arrow.classList.remove('hidden');
                 }
             }
         };
 
-        // --- MAGIA DEL DESLIZADOR ---
+        // --- MAGIA DEL DESLIZADOR (ACTUALIZADO) ---
         const botonesBuy = document.querySelectorAll('.btn-buy');
         const deslizador = document.getElementById('deslizador');
         const btnVolver = document.getElementById('btn-volver');
@@ -583,16 +585,29 @@
 
         botonesBuy.forEach(boton => {
             boton.addEventListener('click', () => {
-                deslizador.classList.add('mover-derecha');
+                // 1. Ocultar la flecha de scroll original inmediatamente
                 scrollArrow.style.display = 'none'; 
+                
+                // 2. LA SOLUCIÓN: Subir al principio de la página AUTOMÁTICAMENTE
+                // Usamos behavior: 'instant' para que suba rápido ANTES de la animación horizontal
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                
+                // 3. Activar la animación horizontal cartoon
+                deslizador.classList.add('mover-derecha');
             });
         });
 
         btnVolver.addEventListener('click', () => {
+            // Volver a la pantalla principal
             deslizador.classList.remove('mover-derecha');
+            
+            // Restaurar la flecha de scroll original después de que termine la animación
             setTimeout(() => {
-                scrollArrow.style.display = 'flex'; 
-            }, 600);
+                // Volvemos a chequear si debe estar visible según el scroll actual
+                if (!(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)) {
+                    scrollArrow.style.display = 'flex'; 
+                }
+            }, 700); // 700ms coincide con el tiempo de la transición CSS
         });
     </script>
 
