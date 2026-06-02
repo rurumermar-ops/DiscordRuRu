@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Sitio Web - GitHub Pages</title>
     <style>
-        /* ---- CONFIGURACIÓN GENERAL Y ESTILOS ---- */
+        /* CSS Integrado */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -22,7 +22,6 @@
             min-height: 100vh;
         }
 
-        /* ---- ENCABEZADO Y NAVEGACIÓN ---- */
         .main-header {
             background-color: #1e1e1e;
             border-bottom: 1px solid #2d2d2d;
@@ -46,18 +45,6 @@
             color: #00adb5;
         }
 
-        .nav-links a {
-            color: #eeeeee;
-            text-decoration: none;
-            margin-left: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #00adb5;
-        }
-
-        /* ---- CONTENEDOR PRINCIPAL ---- */
         .main-content {
             flex: 1;
             display: flex;
@@ -87,7 +74,7 @@
             margin-bottom: 25px;
         }
 
-        /* ---- CONTROL DEL SLOT 1 (IMAGEN KETUPAT) ---- */
+        /* ---- ESTILO DEL SLOT 1 ---- */
         .slot-container {
             background-color: #252525;
             border: 2px solid #00adb5;
@@ -135,14 +122,9 @@
             text-align: left;
         }
 
-        /* ---- BOTONES Y ACCIONES ---- */
         .actions-section {
             margin-top: 25px;
             text-align: center;
-        }
-
-        .btn-group {
-            margin-top: 15px;
         }
 
         .btn {
@@ -151,20 +133,10 @@
             font-weight: bold;
             text-decoration: none;
             border-radius: 6px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-primary {
             background-color: #00adb5;
             color: #ffffff;
         }
 
-        .btn-primary:hover {
-            background-color: #008c92;
-            transform: translateY(-2px);
-        }
-
-        /* ---- PIE DE PÁGINA ---- */
         .main-footer {
             background-color: #1a1a1a;
             padding: 15px;
@@ -180,38 +152,30 @@
     <header class="main-header">
         <div class="nav-container">
             <span class="logo">MiProyecto</span>
-            <nav class="nav-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#galeria">Galería</a>
-                <a href="#contacto">Contacto</a>
-            </nav>
         </div>
     </header>
 
-    <main class="main-content" id="inicio">
+    <main class="main-content">
         <div class="card-container">
             
             <section class="welcome-section">
-                <h1>¡Bienvenido a mi página web!</h1>
-                <p class="subtitle">Este es el espacio principal configurado para tu proyecto en GitHub.</p>
+                <h1>Mi Página Web</h1>
+                <p class="subtitle">Desplegado en GitHub Pages</p>
             </section>
 
-            <section class="slot-container" id="galeria">
+            <section class="slot-container">
                 <div class="slot-header">
-                    <h2>Slot 1: Espacio Destacado</h2>
+                    <h2>Slot 1: Imagen Vinculada</h2>
                 </div>
                 <div class="image-wrapper">
-                    <img src="Ketupat.jpg" alt="Imagen Ketupat" class="responsive-img">
+                    <img src="./Ketupat.jpg" alt="Imagen Ketupat" class="responsive-img">
                 </div>
                 <div class="slot-footer">
-                    <p>Visualización del archivo Ketupat.jpg cargado en la raíz del repositorio.</p>
+                    <p>Archivo: Ketupat.jpg</p>
                 </div>
             </section>
-            <section class="actions-section" id="contacto">
-                <p>Si todo está listo, puedes volver a tu repositorio para gestionar los archivos.</p>
-                <div class="btn-group">
-                    <a href="https://github.com" class="btn btn-primary" target="_blank">Ir a mi GitHub</a>
-                </div>
+            <section class="actions-section">
+                <a href="https://github.com" class="btn" target="_blank">Ir a mi GitHub</a>
             </section>
 
         </div>
