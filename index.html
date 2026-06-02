@@ -10,6 +10,7 @@
     @keyframes scanline {        0% { transform: translateY(-100%); }        100% { transform: translateY(100%); }    }
     /* Contenedor principal */    .wrapper {        position: relative;        z-index: 2;        display: flex;        flex-direction: column;        align-items: center;        width: 100%;    }
     /* SECCIÓN 1: Arriba (Discord) */    .seccion-top {        height: 100vh;        display: flex;        flex-direction: column;        justify-content: center;        align-items: center;        gap: 45px;    }
+    .titulo-pixel {        font-family: 'Press Start 2P', monospace;        font-size: 38px;        color: #ffffff;        text-transform: uppercase;        text-shadow: 5px 5px 0px #a855f7;        margin: 0;        padding: 0 20px;        text-align: center;    }
     .btn-discord {        display: inline-flex;        align-items: center;        gap: 14px;        padding: 18px 40px;        font-size: 22px;        font-weight: bold;        color: white;        background-color: #5865F2;        border: none;        border-radius: 10px;        cursor: pointer;        text-decoration: none;        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;        box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);    }
     .btn-discord:hover {        background-color: #4752C4;        transform: scale(1.05);        box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);    }
     /* SECCIÓN 2: Abajo (Contiene la tabla horizontal y las redes) */    .seccion-bottom {        min-height: 120vh;        display: flex;        flex-direction: column;        align-items: center;        gap: 60px;        padding-top: 40px;        width: 100%;        max-width: 1000px;    }
@@ -41,71 +42,5 @@
     .scroll-arrow-container.hidden {        opacity: 0;        transform: translateY(20px);        pointer-events: none;    }</style>
 
 
-    
-<div class="wrapper">    <div class="seccion-top">        <!-- Se quita el texto arriba a la izquierda según tu pedido -->        <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">            <i class="fa-brands fa-discord"></i> Discord        </a>    </div>
-    <div class="seccion-bottom" id="redes">        <div class="tabla-horizontal-container">            <div class="tabla-horizontal">                <div class="slot-item">                    <p class="slot-title">Ketupat Radioactivo ☢️<br>+500M</p>                    <i class="fa-solid fa-box-open slot-icon-box"></i>                    <button class="btn-buy" onclick="openBuyPage()">Buy</button>                </div>
-                <div class="slot-item">                    <p class="slot-title">Swaggy Bros 🥫<br>+900M</p>                    <i class="fa-solid fa-box-open slot-icon-box"></i>                    <button class="btn-buy" onclick="openBuyPage()">Buy</button>                </div>            </div>        </div>
-        <div class="redes-container">            <div class="perfil-card">                <div class="avatar-container container-tiktok">                    <i class="fa-brands fa-tiktok icon-floating icon-tiktok-glow"></i>                </div>                <a href="https://www.tiktok.com/@zx_deep" target="_blank" class="btn-tiktok">                    <i class="fa-brands fa-tiktok"></i> TikTok                </a>            </div>
-            <div class="perfil-card">                <div class="avatar-container container-roblox">                    <i class="fa-solid fa-cube icon-floating"></i>                </div>                <a href="https://www.roblox.com/es/users/4049770594/profile" target="_blank" class="btn-roblox">                    <i class="fa-solid fa-cube"></i> Roblox                </a>            </div>        </div>    </div></div>
-<div class="scroll-arrow-container" id="scrollArrow" onclick="scrollToRedes()">    <i class="fa-solid fa-angles-down scroll-arrow"></i>    <span class="scroll-text">Scroll</span></div>
-<script>    function scrollToRedes() {        document.getElementById('redes').scrollIntoView();    }
-    window.onscroll = function() {        var arrow = document.getElementById('scrollArrow');        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {            arrow.classList.add('hidden');        } else {            arrow.classList.remove('hidden');        }    };
-    // Función para abrir la página de compra con animación cartoon lateral    function openBuyPage() {        // Abrir en una nueva ventana o pestaña        const url = 'compra.html'; // Página local que crearás con el código que te doy abajo        const width = 600;        const height = 400;        const left = (screen.width / 2) - (width / 2);        const top = (screen.height / 2) - (height / 2);
-        // Abrimos la ventana compra.html centrada        window.open(url, 'Compra', `width=${width},height=${height},top=${top},left=${left},resizable=no,scrollbars=no`);    }</script>
-
-
-
-    
-    
-    Compras en el Discord
-    
-    
-        /* Fondo cartoon con animación de entrada desde la derecha */
-        @keyframes slideInCartoon {
-            0% {
-                transform: translateX(100%) rotate(10deg);
-                opacity: 0;
-                filter: drop-shadow(0 0 0 #000);
-            }
-            50% {
-                transform: translateX(-10%) rotate(-5deg);
-                opacity: 1;
-                filter: drop-shadow(4px 4px 6px #9b22ff);
-            }
-            100% {
-                transform: translateX(0) rotate(0deg);
-                opacity: 1;
-                filter: drop-shadow(8px 8px 10px #a855f7);
-            }
-        }
-    body {
-        margin: 0;
-        background: linear-gradient(45deg, #35005c, #6f2cc0);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        font-family: 'Press Start 2P', cursive;
-        color: #fff;
-        overflow: hidden;
-    }
-
-    .message-box {
-        background: #220044;
-        padding: 40px 60px;
-        border-radius: 20px;
-        box-shadow: 0 0 40px #a855f7;
-        font-size: 18px;
-        text-align: center;
-        animation: slideInCartoon 1s ease forwards;
-        max-width: 90vw;
-        user-select: none;
-    }
-</style>
-
-
-
-    
-        COMPRAS EN EL DISCORD!
-    
-
+<div class="grid-bg"></div>
+<div class="wrapper">
