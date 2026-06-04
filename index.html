@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
-        /* Fondo infinito con scroll activo */
+        /* --- CURSOR PERSONALIZADO 100% CÓDIGO (SVG INLINE) --- */
+        /* Cursor por defecto: Relleno morado, borde verde */
         html, body {
             margin: 0;
             padding: 0;
@@ -18,6 +19,12 @@
             color: white;
             scroll-behavior: smooth;
             overflow-x: hidden; 
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><polygon points="2,2 2,22 9,15 14,24 18,22 13,14 22,14" fill="%23a855f7" stroke="%2322c55e" stroke-width="2" stroke-linejoin="round"/></svg>') 2 2, auto !important;
+        }
+
+        /* Cursor pointer (para botones/enlaces): Relleno verde, borde morado */
+        a, button, .scroll-arrow-container, .menu-lateral button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><polygon points="2,2 2,22 9,15 14,24 18,22 13,14 22,14" fill="%2322c55e" stroke="%23a855f7" stroke-width="2" stroke-linejoin="round"/></svg>') 2 2, pointer !important;
         }
 
         /* CAPA DEL FONDO: Fija mientras bajas */
@@ -33,6 +40,7 @@
             background-size: 50px 50px;
             background-position: center;
             z-index: 1;
+            pointer-events: none; /* Evita que el fondo bloquee el cursor */
         }
 
         /* Línea de escaneo láser */
@@ -45,6 +53,12 @@
             height: 100%;
             background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.15), transparent);
             animation: scanline 6s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
 
         /* --- MENÚ LATERAL GRADIENTE MORADO --- */
@@ -67,7 +81,6 @@
             font-size: 10px;
             padding: 20px 15px;
             text-align: left;
-            cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
             text-transform: uppercase;
@@ -146,7 +159,6 @@
             background-color: #5865F2;
             border: none;
             border-radius: 10px;
-            cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
@@ -282,7 +294,6 @@
             font-size: 14px;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.2s, transform 0.1s;
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
             text-align: center;
@@ -420,7 +431,6 @@
             z-index: 100;
             opacity: 1;
             transition: opacity 0.4s ease, transform 0.4s ease;
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -477,7 +487,7 @@
             font-weight: bold;
         }
 
-        /* --- ESQUELETO HABLANDO (NUEVO) --- */
+        /* --- ESQUELETO HABLANDO --- */
         .esqueleto-container {
             position: fixed;
             bottom: 30px;
@@ -488,18 +498,18 @@
             align-items: center;
             gap: 15px;
             animation: flotar 3s ease-in-out infinite;
+            pointer-events: none; /* Para que no interfiera con los clics */
         }
 
-        /* Dando forma de pixel art usando text-shadow duro */
         .esqueleto-icon {
             font-size: 65px;
-            color: #a855f7; /* Morado base */
+            color: #a855f7; 
             text-shadow: 
                 -3px -3px 0 #000,
                  3px -3px 0 #000,
                 -3px  3px 0 #000,
                  3px  3px 0 #000,
-                 5px  5px 0 rgba(0,0,0,0.8); /* Borde negro estilo pixel y sombra */
+                 5px  5px 0 rgba(0,0,0,0.8); 
         }
 
         .speech-bubble {
@@ -519,7 +529,6 @@
             transition: opacity 0.5s ease;
         }
 
-        /* El piquito de la burbuja */
         .speech-bubble::after {
             content: '';
             position: absolute;
@@ -584,7 +593,6 @@
             background-color: transparent;
             border: 2px solid #a855f7;
             border-radius: 8px;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
@@ -794,7 +802,7 @@
 
         document.addEventListener('DOMContentLoaded', inicializarContador);
 
-        // --- NUEVO LÓGICA DEL ESQUELETO ---
+        // --- LÓGICA DEL ESQUELETO ---
         const frasesEsqueleto = [
             "¡Somos +300 personas!",
             "¡Guau, el Discord está muy activo!",
@@ -806,16 +814,15 @@
         let indiceFrase = 0;
 
         setInterval(() => {
-            // Efecto de desvanecimiento
             burbujaTexto.style.opacity = 0;
             
             setTimeout(() => {
                 indiceFrase = (indiceFrase + 1) % frasesEsqueleto.length;
                 burbujaTexto.textContent = frasesEsqueleto[indiceFrase];
                 burbujaTexto.style.opacity = 1;
-            }, 500); // Espera a que se desvanezca para cambiar el texto
+            }, 500); 
             
-        }, 4000); // Cambia la frase cada 4 segundos
+        }, 4000); 
     </script>
 </body>
 </html>
