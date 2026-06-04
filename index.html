@@ -47,11 +47,6 @@
             animation: scanline 6s linear infinite;
         }
 
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
         /* --- MENÚ LATERAL GRADIENTE MORADO --- */
         .menu-lateral {
             position: fixed;
@@ -66,7 +61,7 @@
         .menu-lateral button {
             background: linear-gradient(90deg, #4c1d95, #9333ea);
             border: 3px solid #000000;
-            border-left: none; /* Se pega al borde izquierdo */
+            border-left: none; 
             color: white;
             font-family: 'Press Start 2P', monospace;
             font-size: 10px;
@@ -76,12 +71,12 @@
             transition: all 0.3s ease;
             box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
             text-transform: uppercase;
-            margin-bottom: -3px; /* Para superponer bordes y que se vea como bloque continuo */
+            margin-bottom: -3px; 
         }
 
         .menu-lateral button:hover {
             background: linear-gradient(90deg, #7e22ce, #c084fc);
-            padding-left: 25px; /* Efecto de pestaña que sale */
+            padding-left: 25px; 
             box-shadow: 6px 4px 0px rgba(0, 0, 0, 0.8);
             color: #ffffff;
             text-shadow: 2px 2px 0px #000;
@@ -113,7 +108,7 @@
             width: 100%;
             min-height: 220vh;
             position: relative;
-            padding-left: 60px; /* Pequeño espacio para que el contenido no choque con el menú en móviles */
+            padding-left: 60px; 
             box-sizing: border-box;
         }
 
@@ -186,7 +181,7 @@
             width: 100%;
         }
 
-        /* Título TIENDA sobre los slots */
+        /* Título TIENDA */
         .titulo-tienda {
             font-family: 'Press Start 2P', monospace;
             font-size: 28px;
@@ -197,7 +192,7 @@
             margin-bottom: -30px; 
             text-align: center;
             z-index: 5;
-            scroll-margin-top: 80px; /* Margen para que al bajar al ancla no quede pegado arriba */
+            scroll-margin-top: 80px; 
         }
 
         /* --- TABLA HORIZONTAL --- */
@@ -306,7 +301,7 @@
             flex-direction: column;
             align-items: center;
             gap: 40px; 
-            margin-top: 100px; /* AQUÍ BAJAMOS LA SECCIÓN COMPLETA DE REDES */
+            margin-top: 100px; 
             width: 100%;
         }
 
@@ -319,7 +314,7 @@
             margin: 0;
             text-align: center;
             z-index: 5;
-            scroll-margin-top: 80px; /* Margen de scroll para el menú lateral */
+            scroll-margin-top: 80px; 
         }
 
         .redes-container {
@@ -482,6 +477,60 @@
             font-weight: bold;
         }
 
+        /* --- ESQUELETO HABLANDO (NUEVO) --- */
+        .esqueleto-container {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        /* Dando forma de pixel art usando text-shadow duro */
+        .esqueleto-icon {
+            font-size: 65px;
+            color: #a855f7; /* Morado base */
+            text-shadow: 
+                -3px -3px 0 #000,
+                 3px -3px 0 #000,
+                -3px  3px 0 #000,
+                 3px  3px 0 #000,
+                 5px  5px 0 rgba(0,0,0,0.8); /* Borde negro estilo pixel y sombra */
+        }
+
+        .speech-bubble {
+            background: #130321;
+            border: 3px solid #a855f7;
+            color: white;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 4px 4px 0px #000000;
+            max-width: 200px;
+            text-align: center;
+            line-height: 1.5;
+            position: relative;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        /* El piquito de la burbuja */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 12px 12px 0;
+            border-style: solid;
+            border-color: #a855f7 transparent transparent transparent;
+        }
+
         /* --- PANTALLA DE DISCORD --- */
         .pantalla-discord {
             display: flex;
@@ -555,6 +604,11 @@
         <button onclick="scrollToSection('seccion-tienda')">TIENDA</button>
         <button onclick="scrollToSection('seccion-redes')">REDES</button>
     </nav>
+
+    <div class="esqueleto-container">
+        <div class="speech-bubble" id="burbuja-texto">¡Únete al Discord!</div>
+        <i class="fa-solid fa-skull esqueleto-icon"></i>
+    </div>
 
     <div class="deslizador" id="deslizador">
         
@@ -739,6 +793,29 @@
         }
 
         document.addEventListener('DOMContentLoaded', inicializarContador);
+
+        // --- NUEVO LÓGICA DEL ESQUELETO ---
+        const frasesEsqueleto = [
+            "¡Somos +300 personas!",
+            "¡Guau, el Discord está muy activo!",
+            "¡Unete para reclamar premios!",
+            "¡Me encanta el color morado!",
+            "¿Has visto la tienda?"
+        ];
+        const burbujaTexto = document.getElementById('burbuja-texto');
+        let indiceFrase = 0;
+
+        setInterval(() => {
+            // Efecto de desvanecimiento
+            burbujaTexto.style.opacity = 0;
+            
+            setTimeout(() => {
+                indiceFrase = (indiceFrase + 1) % frasesEsqueleto.length;
+                burbujaTexto.textContent = frasesEsqueleto[indiceFrase];
+                burbujaTexto.style.opacity = 1;
+            }, 500); // Espera a que se desvanezca para cambiar el texto
+            
+        }, 4000); // Cambia la frase cada 4 segundos
     </script>
 </body>
 </html>
