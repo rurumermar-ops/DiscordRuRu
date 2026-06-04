@@ -132,10 +132,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between; /* Ajustado para empujar el contador abajo */
+            justify-content: space-between;
             gap: 60px;
             padding-top: 40px;
-            padding-bottom: 20px; /* Espacio inferior para el contador */
+            padding-bottom: 20px;
             width: 100%;
             max-width: 1000px;
             box-sizing: border-box;
@@ -228,11 +228,19 @@
             margin: 10px 0;
         }
 
-        /* NUEVO: Icono Azul para la Web Personalizada */
+        /* Icono Azul para la Web Personalizada */
         .slot-icon-blue {
             font-size: 55px;
             color: #3b82f6;
             filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.7));
+            margin: 10px 0;
+        }
+
+        /* NUEVO: Icono Rojo para Discord */
+        .slot-icon-red {
+            font-size: 55px;
+            color: #ef4444;
+            filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.7));
             margin: 10px 0;
         }
 
@@ -405,7 +413,7 @@
             pointer-events: none;
         }
 
-        /* --- NUEVO: ESTILO DEL CONTADOR DE VISITAS (Chiquitito abajo del todo) --- */
+        /* --- ESTILO DEL CONTADOR DE VISITAS --- */
         .contador-visitas {
             font-family: 'Press Start 2P', monospace;
             font-size: 9px;
@@ -528,8 +536,8 @@
                                 </div>
                                 
                                 <div class="slot-item">
-                                    <p class="slot-title">SLOT 04</p>
-                                    <i class="fa-solid fa-box-open slot-icon-box"></i>
+                                    <p class="slot-title">Bot Personalizado</p>
+                                    <i class="fa-brands fa-discord slot-icon-red"></i>
                                     <button class="btn-buy">Buy</button>
                                 </div>
                                 
@@ -636,12 +644,10 @@
             }
         });
 
-        // --- NUEVO: LÓGICA DEL CONTADOR DE VISITAS AUTOMÁTICO ---
+        // --- LÓGICA DEL CONTADOR DE VISITAS AUTOMÁTICO ---
         function inicializarContador() {
             const numeroVisitasEl = document.getElementById('numero-visitas');
             
-            // Usamos un identificador único para tu comunidad (zx_ruru_comunity_counter)
-            // Intentamos conectar con la API global gratuita para contar visitas reales de todo el mundo.
             fetch('https://api.countapi.xyz/hit/zx_ruru_comunity_counter/visits')
                 .then(res => res.json())
                 .then(data => {
@@ -652,7 +658,6 @@
                     }
                 })
                 .catch(() => {
-                    // Si la API global externa falla o está caída, usa el contador persistente del propio navegador
                     fallBackLocalCounter(numeroVisitasEl);
                 });
         }
@@ -665,11 +670,9 @@
                 visitas = parseInt(visitas) + 1;
             }
             localStorage.setItem('visitas_locales', visitas);
-            // Sumamos una base estimada estática para que no empiece en 1 de cara al público si falla la red
             elemento.textContent = parseInt(visitas) + 1240; 
         }
 
-        // Ejecutar contador al cargar la página
         document.addEventListener('DOMContentLoaded', inicializarContador);
     </script>
 </body>
