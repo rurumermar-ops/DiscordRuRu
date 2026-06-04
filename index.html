@@ -52,6 +52,41 @@
             100% { transform: translateY(100%); }
         }
 
+        /* --- MENÚ LATERAL GRADIENTE MORADO --- */
+        .menu-lateral {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .menu-lateral button {
+            background: linear-gradient(90deg, #4c1d95, #9333ea);
+            border: 3px solid #000000;
+            border-left: none; /* Se pega al borde izquierdo */
+            color: white;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            padding: 20px 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+            text-transform: uppercase;
+            margin-bottom: -3px; /* Para superponer bordes y que se vea como bloque continuo */
+        }
+
+        .menu-lateral button:hover {
+            background: linear-gradient(90deg, #7e22ce, #c084fc);
+            padding-left: 25px; /* Efecto de pestaña que sale */
+            box-shadow: 6px 4px 0px rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            text-shadow: 2px 2px 0px #000;
+        }
+
         /* --- SISTEMA DE DESLIZADOR CARTOON --- */
         .deslizador {
             display: flex;
@@ -70,7 +105,7 @@
             flex-shrink: 0; 
         }
 
-        /* Contenedor principal de tu diseño original */
+        /* Contenedor principal */
         .wrapper {
             display: flex;
             flex-direction: column;
@@ -78,6 +113,8 @@
             width: 100%;
             min-height: 220vh;
             position: relative;
+            padding-left: 60px; /* Pequeño espacio para que el contenido no choque con el menú en móviles */
+            box-sizing: border-box;
         }
 
         /* SECCIÓN 1: Arriba (Discord) */
@@ -132,16 +169,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between; /* Ajustado para empujar el contador abajo */
+            justify-content: space-between; 
             gap: 60px;
             padding-top: 40px;
-            padding-bottom: 20px; /* Espacio inferior para el contador */
+            padding-bottom: 20px; 
             width: 100%;
             max-width: 1000px;
             box-sizing: border-box;
         }
 
-        /* Contenedor interno para agrupar Tienda y Redes manteniendo su separación */
         .contenido-secundario {
             display: flex;
             flex-direction: column;
@@ -161,9 +197,10 @@
             margin-bottom: -30px; 
             text-align: center;
             z-index: 5;
+            scroll-margin-top: 80px; /* Margen para que al bajar al ancla no quede pegado arriba */
         }
 
-        /* --- TABLA / LISTA HORIZONTAL ESCROLLEABLE --- */
+        /* --- TABLA HORIZONTAL --- */
         .tabla-horizontal-container {
             width: 90%;
             background-color: rgba(25, 10, 40, 0.6);
@@ -194,7 +231,6 @@
             border-radius: 4px;
         }
 
-        /* Estilo de cada Slot */
         .slot-item {
             flex: 0 0 200px;
             background-color: #130321;
@@ -220,7 +256,6 @@
             line-height: 1.3;
         }
 
-        /* Icono Verde Original */
         .slot-icon-box {
             font-size: 55px;
             color: #22c55e;
@@ -228,7 +263,6 @@
             margin: 10px 0;
         }
 
-        /* Icono Azul para la Web Personalizada */
         .slot-icon-blue {
             font-size: 55px;
             color: #3b82f6;
@@ -236,7 +270,6 @@
             margin: 10px 0;
         }
 
-        /* Icono Rojo de Discord */
         .slot-icon-red {
             font-size: 55px;
             color: #ef4444;
@@ -244,7 +277,6 @@
             margin: 10px 0;
         }
 
-        /* Botón verde BUY abajo */
         .btn-buy {
             width: 100%;
             padding: 8px 0;
@@ -273,8 +305,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px; /* Separación entre la palabra REDES y los íconos */
-            margin-top: 30px; /* Esto baja la sección completa para separarla de la tabla */
+            gap: 40px; 
+            margin-top: 30px; 
             width: 100%;
         }
 
@@ -287,6 +319,7 @@
             margin: 0;
             text-align: center;
             z-index: 5;
+            scroll-margin-top: 80px; /* Margen de scroll para el menú lateral */
         }
 
         .redes-container {
@@ -384,7 +417,7 @@
             color: #000000;
         }
 
-        /* --- FLECHA MORADA ACTUALIZADA --- */
+        /* --- FLECHA MORADA --- */
         .scroll-arrow-container {
             position: fixed;
             right: 40px;
@@ -433,7 +466,7 @@
             pointer-events: none;
         }
 
-        /* --- ESTILO DEL CONTADOR DE VISITAS --- */
+        /* --- CONTADOR DE VISITAS --- */
         .contador-visitas {
             font-family: 'Press Start 2P', monospace;
             font-size: 9px;
@@ -449,7 +482,7 @@
             font-weight: bold;
         }
 
-        /* --- ESTILOS DE LA NUEVA PANTALLA DE DISCORD --- */
+        /* --- PANTALLA DE DISCORD --- */
         .pantalla-discord {
             display: flex;
             flex-direction: column;
@@ -517,22 +550,28 @@
 
     <div class="grid-bg"></div>
 
+    <nav class="menu-lateral">
+        <button onclick="scrollToSection('seccion-discord')">DISCORD</button>
+        <button onclick="scrollToSection('seccion-tienda')">TIENDA</button>
+        <button onclick="scrollToSection('seccion-redes')">REDES</button>
+    </nav>
+
     <div class="deslizador" id="deslizador">
         
         <div class="pantalla principal">
             <div class="wrapper">
                 
-                <div class="seccion-top">
+                <div class="seccion-top" id="seccion-discord">
                     <h1 class="titulo-pixel">Zx_Ruru Comunity</h1>
                     <a href="https://discord.gg/GzfUbcRrQM" target="_blank" class="btn-discord">
                         <i class="fa-brands fa-discord"></i> Discord
                     </a>
                 </div>
 
-                <div class="seccion-bottom" id="redes">
+                <div class="seccion-bottom">
                     
                     <div class="contenido-secundario">
-                        <h2 class="titulo-tienda">TIENDA</h2>
+                        <h2 class="titulo-tienda" id="seccion-tienda">TIENDA</h2>
                         
                         <div class="tabla-horizontal-container">
                             <div class="tabla-horizontal">
@@ -577,7 +616,7 @@
                         </div>
 
                         <div class="redes-wrapper">
-                            <h2 class="titulo-redes">REDES</h2>
+                            <h2 class="titulo-redes" id="seccion-redes">REDES</h2>
                             
                             <div class="redes-container">
                                 <div class="perfil-card">
@@ -610,7 +649,7 @@
 
             </div>
             
-            <div class="scroll-arrow-container" id="scrollArrow" onclick="scrollToRedes()">
+            <div class="scroll-arrow-container" id="scrollArrow" onclick="scrollToSection('seccion-tienda')">
                 <i class="fa-solid fa-angles-down scroll-arrow"></i>
                 <span class="scroll-text">Scroll</span>
             </div>
@@ -633,8 +672,12 @@
     </div>
 
     <script>
-        function scrollToRedes() {
-            document.getElementById('redes').scrollIntoView();
+        // --- NUEVA FUNCIÓN PARA EL MENÚ LATERAL ---
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         window.onscroll = function() {
