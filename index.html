@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Zx_Ruru Comunity</title>
 
-    <!-- Fuentes -->
+    <!-- FUENTE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+
+        /* =========================================
+           GENERAL
+        ========================================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -25,15 +31,15 @@
         }
 
         body {
-            background-color: #08050d;
+            background: #08050d;
             color: white;
             font-family: Arial, sans-serif;
             overflow-x: hidden;
         }
 
-        /* =========================
-           FONDO
-        ========================= */
+        /* =========================================
+           FONDO GRID
+        ========================================= */
 
         body::before {
             content: "";
@@ -42,8 +48,15 @@
             z-index: -2;
 
             background-image:
-                linear-gradient(rgba(145, 60, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(145, 60, 255, 0.08) 1px, transparent 1px);
+                linear-gradient(
+                    rgba(145, 60, 255, 0.08) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(145, 60, 255, 0.08) 1px,
+                    transparent 1px
+                );
 
             background-size: 45px 45px;
             pointer-events: none;
@@ -56,21 +69,34 @@
             z-index: -1;
 
             background:
-                radial-gradient(circle at 50% 20%, rgba(145, 60, 255, 0.18), transparent 35%),
-                radial-gradient(circle at 10% 80%, rgba(90, 20, 180, 0.12), transparent 30%),
-                radial-gradient(circle at 90% 80%, rgba(130, 40, 255, 0.10), transparent 30%);
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(145, 60, 255, 0.18),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 10% 80%,
+                    rgba(90, 20, 180, 0.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(130, 40, 255, 0.10),
+                    transparent 30%
+                );
 
             pointer-events: none;
         }
 
-        /* =========================
+        /* =========================================
            MENÚ LATERAL
-        ========================= */
+        ========================================= */
 
         .menu-lateral {
             position: fixed;
             top: 50%;
             right: 25px;
+
             transform: translateY(-50%);
 
             display: flex;
@@ -82,13 +108,16 @@
 
         .menu-lateral button {
             min-width: 110px;
+
             padding: 13px 18px;
 
-            background: rgba(18, 10, 30, 0.9);
+            background: rgba(18, 10, 30, 0.92);
+
             border: 2px solid #8b35ff;
             border-radius: 8px;
 
             color: white;
+
             font-family: "Press Start 2P", cursive;
             font-size: 9px;
 
@@ -102,15 +131,16 @@
 
         .menu-lateral button:hover {
             background: #8b35ff;
+
             transform: translateX(-5px);
 
             box-shadow:
                 0 0 20px rgba(139, 53, 255, 0.7);
         }
 
-        /* =========================
+        /* =========================================
            SECCIONES
-        ========================= */
+        ========================================= */
 
         .seccion {
             min-height: 100vh;
@@ -126,16 +156,22 @@
         .contenido {
             width: 100%;
             max-width: 1100px;
+
             text-align: center;
         }
 
-        /* =========================
-           TITULOS
-        ========================= */
+        /* =========================================
+           TÍTULOS
+        ========================================= */
 
         .titulo {
             font-family: "Press Start 2P", cursive;
-            font-size: clamp(28px, 5vw, 60px);
+
+            font-size: clamp(
+                28px,
+                5vw,
+                60px
+            );
 
             margin-bottom: 25px;
 
@@ -148,20 +184,25 @@
 
         .subtitulo {
             color: #cfcfcf;
+
             font-size: 18px;
+
             line-height: 1.7;
+
             max-width: 700px;
+
             margin: auto;
         }
 
-        /* =========================
+        /* =========================================
            DISCORD
-        ========================= */
+        ========================================= */
 
         .discord-box {
             margin: 40px auto 0;
 
             max-width: 700px;
+
             padding: 45px 35px;
 
             background: rgba(17, 9, 28, 0.88);
@@ -175,80 +216,96 @@
 
         .discord-icon {
             font-size: 75px;
+
             color: #7289da;
 
             margin-bottom: 25px;
 
             filter:
-                drop-shadow(0 0 10px rgba(114, 137, 218, 0.6));
+                drop-shadow(
+                    0 0 10px
+                    rgba(114, 137, 218, 0.6)
+                );
         }
 
         .discord-box h2 {
             font-family: "Press Start 2P", cursive;
+
             font-size: 18px;
+
             margin-bottom: 20px;
         }
 
         .discord-box p {
             color: #bdbdbd;
+
             line-height: 1.7;
+
             margin-bottom: 30px;
         }
 
         .btn-discord {
             display: inline-flex;
+
             align-items: center;
             justify-content: center;
+
             gap: 12px;
 
             padding: 16px 28px;
 
             background: #5865f2;
+
             color: white;
 
             border-radius: 8px;
+
             text-decoration: none;
 
             font-family: "Press Start 2P", cursive;
+
             font-size: 10px;
 
             transition: 0.2s ease;
 
             box-shadow:
-                0 0 15px rgba(88, 101, 242, 0.4);
+                0 0 15px
+                rgba(88, 101, 242, 0.4);
         }
 
         .btn-discord:hover {
             transform: translateY(-3px);
 
             box-shadow:
-                0 0 25px rgba(88, 101, 242, 0.7);
+                0 0 25px
+                rgba(88, 101, 242, 0.7);
         }
 
-        /* =========================
+        /* =========================================
            ROOT
-        ========================= */
+        ========================================= */
 
         .root-box {
             margin: 40px auto 0;
 
             max-width: 700px;
+
             padding: 50px 35px;
 
             background: rgba(17, 9, 28, 0.88);
 
             border: 2px solid #8b35ff;
+
             border-radius: 15px;
 
             box-shadow:
-                0 0 30px rgba(139, 53, 255, 0.2);
+                0 0 30px
+                rgba(139, 53, 255, 0.2);
         }
 
-        /*
-           LOGO ROOTAPP
-           El símbolo se mantiene como el logo
-           de RootApp y ahora tiene relleno blanco.
-        */
+        /* =========================================
+           LOGO REAL DE ROOTAPP
+        ========================================= */
 
         .root-logo {
             width: 150px;
@@ -257,77 +314,85 @@
             margin: 0 auto 30px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            position: relative;
-
             filter:
-                drop-shadow(0 0 12px rgba(255, 255, 255, 0.35))
-                drop-shadow(0 0 25px rgba(139, 53, 255, 0.55));
+                brightness(0)
+                invert(1)
+                drop-shadow(
+                    0 0 12px
+                    rgba(255, 255, 255, 0.45)
+                )
+                drop-shadow(
+                    0 0 25px
+                    rgba(139, 53, 255, 0.55)
+                );
         }
 
-        .root-logo svg {
+        .root-logo img {
             width: 100%;
             height: 100%;
+
+            object-fit: contain;
 
             display: block;
         }
 
-        /*
-           IMPORTANTE:
-           Todos los elementos del símbolo Root
-           tienen relleno blanco.
-        */
-
-        .root-logo svg *,
-        .root-logo path,
-        .root-logo polygon,
-        .root-logo circle,
-        .root-logo rect {
-            fill: #ffffff !important;
-            stroke: #ffffff !important;
-        }
-
         .root-box h2 {
             font-family: "Press Start 2P", cursive;
+
             font-size: 20px;
 
             margin-bottom: 20px;
 
             text-shadow:
-                0 0 10px rgba(139, 53, 255, 0.7);
+                0 0 10px
+                rgba(139, 53, 255, 0.7);
         }
 
         .root-box p {
             color: #bdbdbd;
+
             line-height: 1.7;
+
             margin-bottom: 30px;
         }
 
+        /* =========================================
+           BOTÓN ROOT
+        ========================================= */
+
         .btn-root {
             display: inline-flex;
+
             align-items: center;
             justify-content: center;
+
             gap: 12px;
 
             padding: 16px 28px;
 
             background: #8b35ff;
+
             color: white;
 
             border: 2px solid #a967ff;
+
             border-radius: 8px;
 
             text-decoration: none;
 
             font-family: "Press Start 2P", cursive;
+
             font-size: 10px;
 
             transition: 0.2s ease;
 
             box-shadow:
-                0 0 15px rgba(139, 53, 255, 0.45);
+                0 0 15px
+                rgba(139, 53, 255, 0.45);
         }
 
         .btn-root:hover {
@@ -336,22 +401,27 @@
             background: #9b4dff;
 
             box-shadow:
-                0 0 30px rgba(139, 53, 255, 0.8);
+                0 0 30px
+                rgba(139, 53, 255, 0.8);
         }
 
         .btn-root i {
             color: white;
+
             font-size: 18px;
         }
 
-        /* =========================
+        /* =========================================
            REDES
-        ========================= */
+        ========================================= */
 
         .redes-container {
             display: flex;
+
             justify-content: center;
+
             flex-wrap: wrap;
+
             gap: 25px;
 
             margin-top: 45px;
@@ -365,9 +435,11 @@
             background: rgba(17, 9, 28, 0.88);
 
             border: 2px solid #8b35ff;
+
             border-radius: 15px;
 
             text-decoration: none;
+
             color: white;
 
             transition: 0.25s ease;
@@ -377,11 +449,13 @@
             transform: translateY(-7px);
 
             box-shadow:
-                0 0 25px rgba(139, 53, 255, 0.45);
+                0 0 25px
+                rgba(139, 53, 255, 0.45);
         }
 
         .red-social i {
             font-size: 55px;
+
             margin-bottom: 20px;
         }
 
@@ -390,28 +464,32 @@
         }
 
         .red-social.roblox i {
-            color: #ffffff;
+            color: white;
         }
 
         .red-social h3 {
             font-family: "Press Start 2P", cursive;
+
             font-size: 13px;
+
             margin-bottom: 15px;
         }
 
         .red-social p {
             color: #aaa;
+
             font-size: 14px;
         }
 
-        /* =========================
+        /* =========================================
            CONTADOR
-        ========================= */
+        ========================================= */
 
         .contador {
             margin-top: 50px;
 
             font-family: "Press Start 2P", cursive;
+
             font-size: 10px;
 
             color: #aaa;
@@ -421,9 +499,9 @@
             color: #a967ff;
         }
 
-        /* =========================
-           FRASE ALEATORIA
-        ========================= */
+        /* =========================================
+           FRASE
+        ========================================= */
 
         .frase {
             margin-top: 30px;
@@ -431,26 +509,33 @@
             color: #aaa;
 
             font-family: "Press Start 2P", cursive;
+
             font-size: 9px;
 
             min-height: 20px;
         }
 
-        /* =========================
+        /* =========================================
            FLECHA
-        ========================= */
+        ========================================= */
 
         .flecha {
             position: fixed;
+
             bottom: 25px;
+
             left: 50%;
 
             transform: translateX(-50%);
 
             font-size: 25px;
+
             color: white;
 
-            animation: flechaMovimiento 1.5s infinite;
+            animation:
+                flechaMovimiento
+                1.5s
+                infinite;
 
             cursor: pointer;
 
@@ -458,44 +543,58 @@
         }
 
         @keyframes flechaMovimiento {
-            0%, 100% {
-                transform: translate(-50%, 0);
+
+            0%,
+            100% {
+                transform:
+                    translate(-50%, 0);
             }
 
             50% {
-                transform: translate(-50%, 8px);
+                transform:
+                    translate(-50%, 8px);
             }
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
+        /* =========================================
+           MÓVIL
+        ========================================= */
 
         @media (max-width: 800px) {
 
             .menu-lateral {
                 top: auto;
+
                 bottom: 15px;
+
                 right: 50%;
 
-                transform: translateX(50%);
+                transform:
+                    translateX(50%);
 
                 flex-direction: row;
+
                 gap: 6px;
             }
 
             .menu-lateral button {
                 min-width: auto;
+
                 padding: 10px 9px;
+
                 font-size: 7px;
             }
 
             .menu-lateral button:hover {
-                transform: translateY(-3px);
+                transform:
+                    translateY(-3px);
             }
 
             .seccion {
-                padding: 60px 20px 120px;
+                padding:
+                    60px
+                    20px
+                    120px;
             }
 
             .titulo {
@@ -508,7 +607,8 @@
 
             .discord-box,
             .root-box {
-                padding: 35px 20px;
+                padding:
+                    35px 20px;
             }
 
             .root-logo {
@@ -528,35 +628,43 @@
                 display: none;
             }
         }
+
     </style>
 </head>
 
 <body>
 
-    <!-- =========================
+    <!-- =========================================
          MENÚ
-    ========================= -->
+    ========================================= -->
 
     <nav class="menu-lateral">
-        <button onclick="scrollToSection('seccion-discord')">
+
+        <button
+            onclick="scrollToSection('seccion-discord')">
             DISCORD
         </button>
 
-        <button onclick="scrollToSection('seccion-root')">
+        <button
+            onclick="scrollToSection('seccion-root')">
             ROOT
         </button>
 
-        <button onclick="scrollToSection('seccion-redes')">
+        <button
+            onclick="scrollToSection('seccion-redes')">
             REDES
         </button>
+
     </nav>
 
 
-    <!-- =========================
+    <!-- =========================================
          DISCORD
-    ========================= -->
+    ========================================= -->
 
-    <section id="seccion-discord" class="seccion">
+    <section
+        id="seccion-discord"
+        class="seccion">
 
         <div class="contenido">
 
@@ -565,8 +673,9 @@
             </h1>
 
             <p class="subtitulo">
-                Bienvenido a nuestra comunidad. Un lugar para jugar,
-                conocer gente, compartir cosas y pasarlo bien.
+                Bienvenido a nuestra comunidad.
+                Un lugar para jugar, conocer gente,
+                compartir cosas y pasarlo bien.
             </p>
 
             <div class="discord-box">
@@ -580,25 +689,32 @@
                 </h2>
 
                 <p>
-                    Únete a nuestra comunidad de Discord para hablar,
-                    jugar con otros miembros, participar en eventos
-                    y estar al tanto de todas las novedades.
+                    Únete a nuestra comunidad de Discord
+                    para hablar, jugar con otros miembros,
+                    participar en eventos y estar al tanto
+                    de todas las novedades.
                 </p>
 
                 <a
                     href="https://discord.gg/GzfUbcRrQM"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn-discord"
-                >
+                    class="btn-discord">
+
                     <i class="fa-brands fa-discord"></i>
+
                     UNIRSE AL DISCORD
+
                 </a>
 
             </div>
 
-            <div class="frase" id="frase">
+            <div
+                class="frase"
+                id="frase">
+
                 ¡Somos +300 personas!
+
             </div>
 
         </div>
@@ -606,11 +722,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =========================================
          ROOT
-    ========================= -->
+    ========================================= -->
 
-    <section id="seccion-root" class="seccion">
+    <section
+        id="seccion-root"
+        class="seccion">
 
         <div class="contenido">
 
@@ -624,26 +742,20 @@
 
             <div class="root-box">
 
-                <!-- LOGO ROOTAPP -->
+                <!--
+                    LOGO OFICIAL DE ROOTAPP
+
+                    Se utiliza el RootLogo.svg oficial.
+                    El filtro CSS lo convierte completamente
+                    a blanco.
+                -->
+
                 <div class="root-logo">
 
-                    <!-- Símbolo RootApp -->
-                    <svg
-                        viewBox="0 0 100 100"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-label="RootApp"
+                    <img
+                        src="https://static.rootapp.com/rootapp.gg/assets/RootLogo.svg"
+                        alt="RootApp"
                     >
-                        <path
-                            d="M50 5
-                            C25 5 8 22 8 45
-                            C8 61 17 74 31 81
-                            L27 95
-                            L45 85
-                            C47 85 48 85 50 85
-                            C75 85 92 68 92 45
-                            C92 22 75 5 50 5Z"
-                        />
-                    </svg>
 
                 </div>
 
@@ -660,10 +772,12 @@
                     href="https://rootapp.gg/ADG9ijuaiQqLi6-T9xwoVg"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn-root"
-                >
+                    class="btn-root">
+
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
                     ENTRAR A ROOT
+
                 </a>
 
             </div>
@@ -673,11 +787,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =========================================
          REDES
-    ========================= -->
+    ========================================= -->
 
-    <section id="seccion-redes" class="seccion">
+    <section
+        id="seccion-redes"
+        class="seccion">
 
         <div class="contenido">
 
@@ -686,18 +802,19 @@
             </h1>
 
             <p class="subtitulo">
-                Sígueme en mis redes y no te pierdas ningún contenido.
+                Sígueme en mis redes y no te pierdas
+                ningún contenido.
             </p>
 
             <div class="redes-container">
 
                 <!-- TIKTOK -->
+
                 <a
                     href="https://www.tiktok.com/@zx_deep"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="red-social tiktok"
-                >
+                    class="red-social tiktok">
 
                     <i class="fa-brands fa-tiktok"></i>
 
@@ -713,12 +830,12 @@
 
 
                 <!-- ROBLOX -->
+
                 <a
                     href="https://www.roblox.com/es/users/4049770594/profile"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="red-social roblox"
-                >
+                    class="red-social roblox">
 
                     <i class="fa-solid fa-gamepad"></i>
 
@@ -738,8 +855,13 @@
             <!-- CONTADOR -->
 
             <div class="contador">
+
                 VISITAS:
-                <span id="contador-visitas">...</span>
+
+                <span id="contador-visitas">
+                    ...
+                </span>
+
             </div>
 
         </div>
@@ -747,46 +869,60 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =========================================
          FLECHA
-    ========================= -->
+    ========================================= -->
 
     <div
         class="flecha"
-        onclick="scrollToSection('seccion-root')"
-    >
+        onclick="scrollToSection('seccion-root')">
+
         <i class="fa-solid fa-chevron-down"></i>
+
     </div>
 
 
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
     <script>
 
-        /* =========================
+        /* =========================================
            SCROLL
-        ========================= */
+        ========================================= */
 
         function scrollToSection(id) {
 
-            const elemento = document.getElementById(id);
+            const elemento =
+                document.getElementById(id);
 
             if (elemento) {
+
                 elemento.scrollIntoView({
                     behavior: "smooth"
                 });
+
             }
         }
 
 
-        /* =========================
+        /* =========================================
            FRASES
-        ========================= */
+        ========================================= */
 
         const frases = [
+
             "¡Somos +300 personas!",
+
             "¡Guau, el Discord está muy activo!",
+
             "¡Únete para reclamar premios!",
+
             "¡Me encanta el color morado!",
+
             "¿Ya estás en Root?"
+
         ];
 
         let fraseActual = 0;
@@ -794,58 +930,84 @@
         const fraseElemento =
             document.getElementById("frase");
 
+
         function cambiarFrase() {
 
             fraseActual++;
 
-            if (fraseActual >= frases.length) {
+            if (
+                fraseActual >=
+                frases.length
+            ) {
+
                 fraseActual = 0;
+
             }
 
             fraseElemento.textContent =
                 frases[fraseActual];
         }
 
-        setInterval(cambiarFrase, 4000);
+
+        setInterval(
+            cambiarFrase,
+            4000
+        );
 
 
-        /* =========================
+        /* =========================================
            CONTADOR DE VISITAS
-        ========================= */
+        ========================================= */
 
         const contadorElemento =
-            document.getElementById("contador-visitas");
+            document.getElementById(
+                "contador-visitas"
+            );
+
 
         fetch(
             "https://api.countapi.xyz/hit/zx_ruru_comunity_counter/visits"
         )
-        .then(response => response.json())
-        .then(data => {
 
-            contadorElemento.textContent =
-                data.value;
+        .then(
+            response =>
+                response.json()
+        )
 
-        })
-        .catch(() => {
+        .then(
+            data => {
 
-            const visitasGuardadas =
-                localStorage.getItem("visitas_zx_ruru");
+                contadorElemento.textContent =
+                    data.value;
 
-            let visitas =
-                visitasGuardadas
-                    ? parseInt(visitasGuardadas)
-                    : 0;
+            }
+        )
 
-            visitas++;
+        .catch(
+            () => {
 
-            localStorage.setItem(
-                "visitas_zx_ruru",
-                visitas
-            );
+                const visitasGuardadas =
+                    localStorage.getItem(
+                        "visitas_zx_ruru"
+                    );
 
-            contadorElemento.textContent =
-                visitas;
-        });
+                let visitas =
+                    visitasGuardadas
+                        ? parseInt(visitasGuardadas)
+                        : 0;
+
+                visitas++;
+
+                localStorage.setItem(
+                    "visitas_zx_ruru",
+                    visitas
+                );
+
+                contadorElemento.textContent =
+                    visitas;
+
+            }
+        );
 
     </script>
 
