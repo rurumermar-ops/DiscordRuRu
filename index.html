@@ -4,217 +4,305 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zx_Ruru Comunity</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        html, body {
+        * {
             margin: 0;
             padding: 0;
-            background-color: #0a0110;
-            font-family: Arial, sans-serif;
-            color: white;
+            box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
-            overflow-x: hidden; 
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><polygon points="2,2 2,22 9,15 14,24 18,22 13,14 22,14" fill="%23a855f7" stroke="%2322c55e" stroke-width="2" stroke-linejoin="round"/></svg>') 2 2, auto !important;
         }
 
-        a, button, .scroll-arrow-container, .menu-lateral button {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><polygon points="2,2 2,22 9,15 14,24 18,22 13,14 22,14" fill="%2322c55e" stroke="%23a855f7" stroke-width="2" stroke-linejoin="round"/></svg>') 2 2, pointer !important;
+        body {
+            background-color: #08050d;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
         }
 
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: 
-                linear-gradient(rgba(147, 51, 234, 0.25) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(147, 51, 234, 0.25) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: center;
-            z-index: 1;
-            pointer-events: none;
-        }
+        /* =========================
+           FONDO
+        ========================= */
 
-        .grid-bg::after {
+        body::before {
             content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.15), transparent);
-            animation: scanline 6s linear infinite;
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+
+            background-image:
+                linear-gradient(rgba(145, 60, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(145, 60, 255, 0.08) 1px, transparent 1px);
+
+            background-size: 45px 45px;
             pointer-events: none;
         }
 
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+
+            background:
+                radial-gradient(circle at 50% 20%, rgba(145, 60, 255, 0.18), transparent 35%),
+                radial-gradient(circle at 10% 80%, rgba(90, 20, 180, 0.12), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(130, 40, 255, 0.10), transparent 30%);
+
+            pointer-events: none;
         }
 
-        /* --- MENÚ --- */
+        /* =========================
+           MENÚ LATERAL
+        ========================= */
+
         .menu-lateral {
             position: fixed;
-            top: 20px;
-            left: 0;
+            top: 50%;
+            right: 25px;
+            transform: translateY(-50%);
+
             display: flex;
             flex-direction: column;
+            gap: 12px;
+
             z-index: 1000;
         }
 
         .menu-lateral button {
-            background: linear-gradient(90deg, #4c1d95, #9333ea);
-            border: 3px solid #000000;
-            border-left: none; 
+            min-width: 110px;
+            padding: 13px 18px;
+
+            background: rgba(18, 10, 30, 0.9);
+            border: 2px solid #8b35ff;
+            border-radius: 8px;
+
             color: white;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 10px;
-            padding: 20px 15px;
-            text-align: left;
-            transition: all 0.3s ease;
-            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
-            text-transform: uppercase;
-            margin-bottom: -3px; 
+            font-family: "Press Start 2P", cursive;
+            font-size: 9px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 10px rgba(139, 53, 255, 0.35);
+
+            transition: 0.2s ease;
         }
 
         .menu-lateral button:hover {
-            background: linear-gradient(90deg, #7e22ce, #c084fc);
-            padding-left: 25px; 
-            box-shadow: 6px 4px 0px rgba(0, 0, 0, 0.8);
-            color: #ffffff;
-            text-shadow: 2px 2px 0px #000;
+            background: #8b35ff;
+            transform: translateX(-5px);
+
+            box-shadow:
+                0 0 20px rgba(139, 53, 255, 0.7);
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .deslizador {
-            display: flex;
-            width: 100vw; 
-            position: relative;
-            z-index: 2;
-        }
+        /* =========================
+           SECCIONES
+        ========================= */
 
-        .pantalla {
-            width: 100vw;
-            flex-shrink: 0; 
-        }
-
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .seccion {
+            min-height: 100vh;
             width: 100%;
-            min-height: 200vh;
-            position: relative;
-            padding-left: 60px; 
-            box-sizing: border-box;
-        }
 
-        /* --- DISCORD --- */
-        .seccion-top {
-            height: 100vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-            gap: 45px;
-            width: 100%;
+
+            padding: 80px 140px 80px 40px;
         }
 
-        .titulo-pixel {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 38px;
-            color: #ffffff;
-            text-transform: uppercase;
-            text-shadow: 5px 5px 0px #a855f7;
-            margin: 0;
-            padding: 0 20px;
+        .contenido {
+            width: 100%;
+            max-width: 1100px;
             text-align: center;
-            line-height: 1.5;
+        }
+
+        /* =========================
+           TITULOS
+        ========================= */
+
+        .titulo {
+            font-family: "Press Start 2P", cursive;
+            font-size: clamp(28px, 5vw, 60px);
+
+            margin-bottom: 25px;
+
+            color: white;
+
+            text-shadow:
+                0 0 10px #8b35ff,
+                0 0 25px rgba(139, 53, 255, 0.7);
+        }
+
+        .subtitulo {
+            color: #cfcfcf;
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* =========================
+           DISCORD
+        ========================= */
+
+        .discord-box {
+            margin: 40px auto 0;
+
+            max-width: 700px;
+            padding: 45px 35px;
+
+            background: rgba(17, 9, 28, 0.88);
+
+            border: 2px solid #8b35ff;
+            border-radius: 15px;
+
+            box-shadow:
+                0 0 30px rgba(139, 53, 255, 0.2);
+        }
+
+        .discord-icon {
+            font-size: 75px;
+            color: #7289da;
+
+            margin-bottom: 25px;
+
+            filter:
+                drop-shadow(0 0 10px rgba(114, 137, 218, 0.6));
+        }
+
+        .discord-box h2 {
+            font-family: "Press Start 2P", cursive;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .discord-box p {
+            color: #bdbdbd;
+            line-height: 1.7;
+            margin-bottom: 30px;
         }
 
         .btn-discord {
             display: inline-flex;
             align-items: center;
-            gap: 14px;
-            padding: 18px 40px;
-            font-size: 22px;
-            font-weight: bold;
+            justify-content: center;
+            gap: 12px;
+
+            padding: 16px 28px;
+
+            background: #5865f2;
             color: white;
-            background-color: #5865F2;
-            border: none;
-            border-radius: 10px;
+
+            border-radius: 8px;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+
+            font-family: "Press Start 2P", cursive;
+            font-size: 10px;
+
+            transition: 0.2s ease;
+
+            box-shadow:
+                0 0 15px rgba(88, 101, 242, 0.4);
         }
 
         .btn-discord:hover {
-            background-color: #4752C4;
-            transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 0 25px rgba(88, 101, 242, 0.7);
         }
 
-        /* --- SECCIÓN INFERIOR --- */
-        .seccion-bottom {
-            min-height: 120vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between; 
-            gap: 60px;
-            padding-top: 40px;
-            padding-bottom: 20px; 
-            width: 100%;
-            max-width: 1000px;
-            box-sizing: border-box;
+        /* =========================
+           ROOT
+        ========================= */
+
+        .root-box {
+            margin: 40px auto 0;
+
+            max-width: 700px;
+            padding: 50px 35px;
+
+            background: rgba(17, 9, 28, 0.88);
+
+            border: 2px solid #8b35ff;
+            border-radius: 15px;
+
+            box-shadow:
+                0 0 30px rgba(139, 53, 255, 0.2);
         }
 
-        .contenido-secundario {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 60px;
-            width: 100%;
-        }
-
-        /* --- ROOT --- */
-        .titulo-root {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 28px;
-            color: #ffffff;
-            text-transform: uppercase;
-            text-shadow: 4px 4px 0px #a855f7;
-            margin: 0;
-            text-align: center;
-            z-index: 5;
-            scroll-margin-top: 80px;
-        }
-
-        .root-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 35px;
-            width: 90%;
-            min-height: 420px;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            background-color: rgba(25, 10, 40, 0.6);
-            border: 2px solid #a855f7;
-            border-radius: 12px;
-            box-shadow: 0 0 25px rgba(168, 85, 247, 0.3);
-        }
+        /*
+           LOGO ROOTAPP
+           El símbolo se mantiene como el logo
+           de RootApp y ahora tiene relleno blanco.
+        */
 
         .root-logo {
             width: 150px;
             height: 150px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 18px rgba(168, 85, 247, 0.65));
+
+            margin: 0 auto 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            filter:
+                drop-shadow(0 0 12px rgba(255, 255, 255, 0.35))
+                drop-shadow(0 0 25px rgba(139, 53, 255, 0.55));
+        }
+
+        .root-logo svg {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+        }
+
+        /*
+           IMPORTANTE:
+           Todos los elementos del símbolo Root
+           tienen relleno blanco.
+        */
+
+        .root-logo svg *,
+        .root-logo path,
+        .root-logo polygon,
+        .root-logo circle,
+        .root-logo rect {
+            fill: #ffffff !important;
+            stroke: #ffffff !important;
+        }
+
+        .root-box h2 {
+            font-family: "Press Start 2P", cursive;
+            font-size: 20px;
+
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 0 10px rgba(139, 53, 255, 0.7);
+        }
+
+        .root-box p {
+            color: #bdbdbd;
+            line-height: 1.7;
+            margin-bottom: 30px;
         }
 
         .btn-root {
@@ -222,590 +310,542 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 18px 40px;
-            font-size: 22px;
-            font-weight: bold;
+
+            padding: 16px 28px;
+
+            background: #8b35ff;
             color: white;
-            background-color: #111111;
-            border: 2px solid #ffffff;
-            border-radius: 10px;
+
+            border: 2px solid #a967ff;
+            border-radius: 8px;
+
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+
+            font-family: "Press Start 2P", cursive;
+            font-size: 10px;
+
+            transition: 0.2s ease;
+
+            box-shadow:
+                0 0 15px rgba(139, 53, 255, 0.45);
         }
 
         .btn-root:hover {
-            background-color: #ffffff;
-            color: #111111;
-            transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(168, 85, 247, 0.8);
+            transform: translateY(-3px);
+
+            background: #9b4dff;
+
+            box-shadow:
+                0 0 30px rgba(139, 53, 255, 0.8);
         }
 
-        .root-icon-button {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
+        .btn-root i {
+            color: white;
+            font-size: 18px;
         }
 
-        /* --- REDES --- */
-        .redes-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px; 
-            margin-top: 100px; 
-            width: 100%;
-        }
-
-        .titulo-redes {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 28px;
-            color: #ffffff;
-            text-transform: uppercase;
-            text-shadow: 4px 4px 0px #a855f7;
-            margin: 0;
-            text-align: center;
-            z-index: 5;
-            scroll-margin-top: 80px; 
-        }
+        /* =========================
+           REDES
+        ========================= */
 
         .redes-container {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            gap: 80px;
             flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .perfil-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             gap: 25px;
-            width: 250px;
+
+            margin-top: 45px;
         }
 
-        @keyframes flotar {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        .red-social {
+            width: 280px;
+
+            padding: 35px 25px;
+
+            background: rgba(17, 9, 28, 0.88);
+
+            border: 2px solid #8b35ff;
+            border-radius: 15px;
+
+            text-decoration: none;
+            color: white;
+
+            transition: 0.25s ease;
         }
 
-        .avatar-container {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            animation: flotar 4s ease-in-out infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .red-social:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 0 25px rgba(139, 53, 255, 0.45);
         }
 
-        .container-tiktok { 
-            background-color: #000000;
-            box-shadow: 0 0 25px rgba(168, 85, 247, 0.8); 
+        .red-social i {
+            font-size: 55px;
+            margin-bottom: 20px;
         }
 
-        .container-roblox { 
-            background-color: #191b1d;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6); 
+        .red-social.tiktok i {
+            color: white;
         }
 
-        .icon-floating {
-            font-size: 65px;
+        .red-social.roblox i {
             color: #ffffff;
         }
 
-        .icon-tiktok-glow {
-            text-shadow: -3px -3px 0px #69c9d0, 3px 3px 0px #ee1d52;
+        .red-social h3 {
+            font-family: "Press Start 2P", cursive;
+            font-size: 13px;
+            margin-bottom: 15px;
         }
 
-        .btn-tiktok {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background-color: #000000;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            box-shadow: -3px -3px 0px #69c9d0, 3px 3px 0px #ee1d52;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .red-social p {
+            color: #aaa;
+            font-size: 14px;
         }
 
-        .btn-tiktok:hover {
-            transform: scale(1.05);
-            box-shadow: -5px -5px 0px #69c9d0, 5px 5px 0px #ee1d52;
-        }
+        /* =========================
+           CONTADOR
+        ========================= */
 
-        .btn-roblox {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background-color: #191b1d;
-            border: 2px solid #ffffff;
-            border-radius: 8px;
-            text-decoration: none;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
+        .contador {
+            margin-top: 50px;
 
-        .btn-roblox:hover {
-            transform: scale(1.05);
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        /* --- FLECHA --- */
-        .scroll-arrow-container {
-            position: fixed;
-            right: 40px;
-            bottom: 45px;
-            z-index: 100;
-            opacity: 1;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            user-select: none;
-        }
-
-        @keyframes flotarFlecha {
-            0% { transform: translateY(0px); }
-            45% { transform: translateY(12px); }
-            55% { transform: translateY(12px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .scroll-arrow {
-            font-size: 55px; 
-            color: #a855f7;
-            animation: flotarFlecha 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.9));
-        }
-
-        .scroll-text {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 12px; 
-            color: #a855f7;
-            text-transform: uppercase;
-            text-align: center;
-            text-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
-        }
-
-        .scroll-arrow-container:hover .scroll-arrow {
-            color: #c084fc;
-        }
-
-        .scroll-arrow-container.hidden {
-            opacity: 0;
-            transform: translateY(30px);
-            pointer-events: none;
-        }
-
-        /* --- CONTADOR --- */
-        .contador-visitas {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 9px;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: center;
-            width: 100%;
-            letter-spacing: 1px;
-            margin-top: 40px;
-            text-shadow: 0 0 5px rgba(168, 85, 247, 0.3);
-        }
-
-        .contador-visitas span {
-            color: #a855f7;
-            font-weight: bold;
-        }
-
-        /* --- ESQUELETO --- */
-        .esqueleto-container {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            animation: flotar 3s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .esqueleto-icon {
-            font-size: 65px;
-            color: #a855f7; 
-            text-shadow: 
-                -3px -3px 0 #000,
-                 3px -3px 0 #000,
-                -3px  3px 0 #000,
-                 3px  3px 0 #000,
-                 5px  5px 0 rgba(0,0,0,0.8); 
-        }
-
-        .speech-bubble {
-            background: #130321;
-            border: 3px solid #a855f7;
-            color: white;
-            font-family: 'Press Start 2P', monospace;
+            font-family: "Press Start 2P", cursive;
             font-size: 10px;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 4px 4px 0px #000000;
-            max-width: 200px;
-            text-align: center;
-            line-height: 1.5;
-            position: relative;
-            opacity: 1;
-            transition: opacity 0.5s ease;
+
+            color: #aaa;
         }
 
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
+        .contador span {
+            color: #a967ff;
+        }
+
+        /* =========================
+           FRASE ALEATORIA
+        ========================= */
+
+        .frase {
+            margin-top: 30px;
+
+            color: #aaa;
+
+            font-family: "Press Start 2P", cursive;
+            font-size: 9px;
+
+            min-height: 20px;
+        }
+
+        /* =========================
+           FLECHA
+        ========================= */
+
+        .flecha {
+            position: fixed;
+            bottom: 25px;
             left: 50%;
+
             transform: translateX(-50%);
-            border-width: 12px 12px 0;
-            border-style: solid;
-            border-color: #a855f7 transparent transparent transparent;
+
+            font-size: 25px;
+            color: white;
+
+            animation: flechaMovimiento 1.5s infinite;
+
+            cursor: pointer;
+
+            z-index: 500;
+        }
+
+        @keyframes flechaMovimiento {
+            0%, 100% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, 8px);
+            }
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .menu-lateral {
+                top: auto;
+                bottom: 15px;
+                right: 50%;
+
+                transform: translateX(50%);
+
+                flex-direction: row;
+                gap: 6px;
+            }
+
+            .menu-lateral button {
+                min-width: auto;
+                padding: 10px 9px;
+                font-size: 7px;
+            }
+
+            .menu-lateral button:hover {
+                transform: translateY(-3px);
+            }
+
+            .seccion {
+                padding: 60px 20px 120px;
+            }
+
+            .titulo {
+                font-size: 28px;
+            }
+
+            .subtitulo {
+                font-size: 15px;
+            }
+
+            .discord-box,
+            .root-box {
+                padding: 35px 20px;
+            }
+
+            .root-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .redes-container {
+                gap: 15px;
+            }
+
+            .red-social {
+                width: 100%;
+            }
+
+            .flecha {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="grid-bg"></div>
+    <!-- =========================
+         MENÚ
+    ========================= -->
 
-    <!-- MENÚ LATERAL -->
     <nav class="menu-lateral">
-        <button onclick="scrollToSection('seccion-discord')">DISCORD</button>
-        <button onclick="scrollToSection('seccion-root')">ROOT</button>
-        <button onclick="scrollToSection('seccion-redes')">REDES</button>
+        <button onclick="scrollToSection('seccion-discord')">
+            DISCORD
+        </button>
+
+        <button onclick="scrollToSection('seccion-root')">
+            ROOT
+        </button>
+
+        <button onclick="scrollToSection('seccion-redes')">
+            REDES
+        </button>
     </nav>
 
-    <!-- ESQUELETO -->
-    <div class="esqueleto-container">
-        <div class="speech-bubble" id="burbuja-texto">¡Únete al Discord!</div>
-        <i class="fa-solid fa-skull esqueleto-icon"></i>
-    </div>
 
-    <!-- CONTENIDO -->
-    <div class="deslizador" id="deslizador">
+    <!-- =========================
+         DISCORD
+    ========================= -->
 
-        <div class="pantalla principal">
+    <section id="seccion-discord" class="seccion">
 
-            <div class="wrapper">
+        <div class="contenido">
 
-                <!-- DISCORD -->
-                <div class="seccion-top" id="seccion-discord">
+            <h1 class="titulo">
+                Zx_Ruru Comunity
+            </h1>
 
-                    <h1 class="titulo-pixel">
-                        Zx_Ruru Comunity
-                    </h1>
+            <p class="subtitulo">
+                Bienvenido a nuestra comunidad. Un lugar para jugar,
+                conocer gente, compartir cosas y pasarlo bien.
+            </p>
 
-                    <a href="https://discord.gg/GzfUbcRrQM"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="btn-discord">
+            <div class="discord-box">
 
-                        <i class="fa-brands fa-discord"></i>
-                        Discord
-
-                    </a>
-
+                <div class="discord-icon">
+                    <i class="fa-brands fa-discord"></i>
                 </div>
 
-                <!-- SECCIÓN INFERIOR -->
-                <div class="seccion-bottom">
+                <h2>
+                    DISCORD
+                </h2>
 
-                    <div class="contenido-secundario">
+                <p>
+                    Únete a nuestra comunidad de Discord para hablar,
+                    jugar con otros miembros, participar en eventos
+                    y estar al tanto de todas las novedades.
+                </p>
 
-                        <!-- ROOT -->
-                        <h2 class="titulo-root" id="seccion-root">
-                            ROOT
-                        </h2>
-
-                        <div class="root-wrapper">
-
-                            <img
-                                class="root-logo"
-                                src="https://cdn.prod.website-files.com/6792bf217e6993766175e274/6838b4a94a8039d055a2fc4c_Logo%20%281%29.svg"
-                                alt="Root"
-                            >
-
-                            <a
-                                href="https://rootapp.gg/ADG9ijuaiQqLi6-T9xwoVg"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="btn-root"
-                            >
-
-                                <img
-                                    class="root-icon-button"
-                                    src="https://cdn.prod.website-files.com/6792bf217e6993766175e274/6838b4a94a8039d055a2fc4c_Logo%20%281%29.svg"
-                                    alt=""
-                                >
-
-                                Entrar a Root
-
-                            </a>
-
-                        </div>
-
-                        <!-- REDES -->
-                        <div class="redes-wrapper">
-
-                            <h2 class="titulo-redes" id="seccion-redes">
-                                REDES
-                            </h2>
-
-                            <div class="redes-container">
-
-                                <!-- TIKTOK -->
-                                <div class="perfil-card">
-
-                                    <div class="avatar-container container-tiktok">
-
-                                        <i class="fa-brands fa-tiktok icon-floating icon-tiktok-glow"></i>
-
-                                    </div>
-
-                                    <a
-                                        href="https://www.tiktok.com/@zx_deep"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="btn-tiktok"
-                                    >
-
-                                        <i class="fa-brands fa-tiktok"></i>
-                                        TikTok
-
-                                    </a>
-
-                                </div>
-
-                                <!-- ROBLOX -->
-                                <div class="perfil-card">
-
-                                    <div class="avatar-container container-roblox">
-
-                                        <i class="fa-solid fa-cube icon-floating"></i>
-
-                                    </div>
-
-                                    <a
-                                        href="https://www.roblox.com/es/users/4049770594/profile"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="btn-roblox"
-                                    >
-
-                                        <i class="fa-solid fa-cube"></i>
-                                        Roblox
-
-                                    </a>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- CONTADOR -->
-                    <div class="contador-visitas">
-
-                        VISITAS:
-                        <span id="numero-visitas">
-                            Cargando...
-                        </span>
-
-                    </div>
-
-                </div>
+                <a
+                    href="https://discord.gg/GzfUbcRrQM"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-discord"
+                >
+                    <i class="fa-brands fa-discord"></i>
+                    UNIRSE AL DISCORD
+                </a>
 
             </div>
 
-            <!-- FLECHA -->
-            <div
-                class="scroll-arrow-container"
-                id="scrollArrow"
-                onclick="scrollToSection('seccion-root')"
-            >
+            <div class="frase" id="frase">
+                ¡Somos +300 personas!
+            </div>
 
-                <i class="fa-solid fa-angles-down scroll-arrow"></i>
+        </div>
 
-                <span class="scroll-text">
-                    Scroll
-                </span>
+    </section>
+
+
+    <!-- =========================
+         ROOT
+    ========================= -->
+
+    <section id="seccion-root" class="seccion">
+
+        <div class="contenido">
+
+            <h1 class="titulo">
+                ROOT
+            </h1>
+
+            <p class="subtitulo">
+                Descubre RootApp y únete a nuestra comunidad.
+            </p>
+
+            <div class="root-box">
+
+                <!-- LOGO ROOTAPP -->
+                <div class="root-logo">
+
+                    <!-- Símbolo RootApp -->
+                    <svg
+                        viewBox="0 0 100 100"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-label="RootApp"
+                    >
+                        <path
+                            d="M50 5
+                            C25 5 8 22 8 45
+                            C8 61 17 74 31 81
+                            L27 95
+                            L45 85
+                            C47 85 48 85 50 85
+                            C75 85 92 68 92 45
+                            C92 22 75 5 50 5Z"
+                        />
+                    </svg>
+
+                </div>
+
+                <h2>
+                    ROOTAPP
+                </h2>
+
+                <p>
+                    Entra a RootApp desde nuestra comunidad
+                    y descubre todo lo que tenemos preparado.
+                </p>
+
+                <a
+                    href="https://rootapp.gg/ADG9ijuaiQqLi6-T9xwoVg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-root"
+                >
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    ENTRAR A ROOT
+                </a>
 
             </div>
 
         </div>
 
+    </section>
+
+
+    <!-- =========================
+         REDES
+    ========================= -->
+
+    <section id="seccion-redes" class="seccion">
+
+        <div class="contenido">
+
+            <h1 class="titulo">
+                REDES
+            </h1>
+
+            <p class="subtitulo">
+                Sígueme en mis redes y no te pierdas ningún contenido.
+            </p>
+
+            <div class="redes-container">
+
+                <!-- TIKTOK -->
+                <a
+                    href="https://www.tiktok.com/@zx_deep"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="red-social tiktok"
+                >
+
+                    <i class="fa-brands fa-tiktok"></i>
+
+                    <h3>
+                        TIKTOK
+                    </h3>
+
+                    <p>
+                        @zx_deep
+                    </p>
+
+                </a>
+
+
+                <!-- ROBLOX -->
+                <a
+                    href="https://www.roblox.com/es/users/4049770594/profile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="red-social roblox"
+                >
+
+                    <i class="fa-solid fa-gamepad"></i>
+
+                    <h3>
+                        ROBLOX
+                    </h3>
+
+                    <p>
+                        Mi perfil de Roblox
+                    </p>
+
+                </a>
+
+            </div>
+
+
+            <!-- CONTADOR -->
+
+            <div class="contador">
+                VISITAS:
+                <span id="contador-visitas">...</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FLECHA
+    ========================= -->
+
+    <div
+        class="flecha"
+        onclick="scrollToSection('seccion-root')"
+    >
+        <i class="fa-solid fa-chevron-down"></i>
     </div>
+
 
     <script>
 
-        /* --- SCROLL DEL MENÚ --- */
+        /* =========================
+           SCROLL
+        ========================= */
+
         function scrollToSection(id) {
 
-            const section = document.getElementById(id);
+            const elemento = document.getElementById(id);
 
-            if (section) {
-
-                section.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+            if (elemento) {
+                elemento.scrollIntoView({
+                    behavior: "smooth"
                 });
-
             }
-
         }
 
 
-        /* --- FLECHA DE SCROLL --- */
-        window.onscroll = function() {
+        /* =========================
+           FRASES
+        ========================= */
 
-            const arrow = document.getElementById('scrollArrow');
+        const frases = [
+            "¡Somos +300 personas!",
+            "¡Guau, el Discord está muy activo!",
+            "¡Únete para reclamar premios!",
+            "¡Me encanta el color morado!",
+            "¿Ya estás en Root?"
+        ];
 
-            if (
-                document.body.scrollTop > 100 ||
-                document.documentElement.scrollTop > 100
-            ) {
+        let fraseActual = 0;
 
-                arrow.classList.add('hidden');
+        const fraseElemento =
+            document.getElementById("frase");
 
-            } else {
+        function cambiarFrase() {
 
-                arrow.classList.remove('hidden');
+            fraseActual++;
 
+            if (fraseActual >= frases.length) {
+                fraseActual = 0;
             }
 
-        };
-
-
-        /* --- CONTADOR DE VISITAS --- */
-        function inicializarContador() {
-
-            const numeroVisitasEl =
-                document.getElementById('numero-visitas');
-
-            fetch(
-                'https://api.countapi.xyz/hit/zx_ruru_comunity_counter/visits'
-            )
-
-            .then(res => res.json())
-
-            .then(data => {
-
-                if (data.value) {
-
-                    numeroVisitasEl.textContent = data.value;
-
-                } else {
-
-                    fallBackLocalCounter(numeroVisitasEl);
-
-                }
-
-            })
-
-            .catch(() => {
-
-                fallBackLocalCounter(numeroVisitasEl);
-
-            });
-
+            fraseElemento.textContent =
+                frases[fraseActual];
         }
 
+        setInterval(cambiarFrase, 4000);
 
-        /* --- CONTADOR LOCAL DE RESPALDO --- */
-        function fallBackLocalCounter(elemento) {
+
+        /* =========================
+           CONTADOR DE VISITAS
+        ========================= */
+
+        const contadorElemento =
+            document.getElementById("contador-visitas");
+
+        fetch(
+            "https://api.countapi.xyz/hit/zx_ruru_comunity_counter/visits"
+        )
+        .then(response => response.json())
+        .then(data => {
+
+            contadorElemento.textContent =
+                data.value;
+
+        })
+        .catch(() => {
+
+            const visitasGuardadas =
+                localStorage.getItem("visitas_zx_ruru");
 
             let visitas =
-                localStorage.getItem('visitas_locales');
+                visitasGuardadas
+                    ? parseInt(visitasGuardadas)
+                    : 0;
 
-            if (!visitas) {
-
-                visitas = 1;
-
-            } else {
-
-                visitas = parseInt(visitas) + 1;
-
-            }
+            visitas++;
 
             localStorage.setItem(
-                'visitas_locales',
+                "visitas_zx_ruru",
                 visitas
             );
 
-            elemento.textContent =
-                parseInt(visitas) + 1240;
-
-        }
-
-
-        document.addEventListener(
-            'DOMContentLoaded',
-            inicializarContador
-        );
-
-
-        /* --- FRASES DEL ESQUELETO --- */
-        const frasesEsqueleto = [
-
-            "¡Somos +300 personas!",
-
-            "¡Guau, el Discord está muy activo!",
-
-            "¡Unete para reclamar premios!",
-
-            "¡Me encanta el color morado!",
-
-            "¿Ya estás en Root?"
-
-        ];
-
-
-        const burbujaTexto =
-            document.getElementById('burbuja-texto');
-
-        let indiceFrase = 0;
-
-
-        setInterval(() => {
-
-            burbujaTexto.style.opacity = 0;
-
-            setTimeout(() => {
-
-                indiceFrase =
-                    (indiceFrase + 1) %
-                    frasesEsqueleto.length;
-
-                burbujaTexto.textContent =
-                    frasesEsqueleto[indiceFrase];
-
-                burbujaTexto.style.opacity = 1;
-
-            }, 500);
-
-        }, 4000);
+            contadorElemento.textContent =
+                visitas;
+        });
 
     </script>
 
